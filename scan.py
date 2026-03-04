@@ -3,8 +3,8 @@ import time
 import json
 from datetime import datetime, timezone
 from collections import defaultdict
-
 import os
+
 API_KEY = os.environ.get("HELIUS_API_KEY", "")
 CONTRACT = "3NJyzGWjSHP4hZvsqakodi7jAtbufwd52vn1ek6EzQ35"
 OUTPUT = "winners.json"
@@ -29,7 +29,7 @@ def fetch_page(before=None):
     return []
 
 def load_existing():
-    if __import__('os').path.exists(OUTPUT):
+    if os.path.exists(OUTPUT):
         with open(OUTPUT) as f:
             return json.load(f)
     return {"stats": {}, "winners": [], "leaderboard": []}
@@ -39,7 +39,6 @@ print("Tramplin.io incremental scan starting...\n")
 existing = load_existing()
 known_sigs = {w["signature"] for w in existing.get("winners", [])}
 
-# Get last scan timestamp
 last_ts = 0
 for w in existing.get("winners", []):
     if w.get("timestamp", 0) > last_ts:
@@ -50,7 +49,7 @@ if last_ts > 0:
     print("Last scan:", last_str)
     print("Scanning only NEW transactions since then...\n")
 else:
-    print("No existing data - full scan\n")
+    print("No existing data - full scan (max 285 pages)\n")
 
 new_wins = []
 before = None
@@ -69,7 +68,6 @@ while not stop:
         sig = tx.get("signature", "")
         timestamp = tx.get("timestamp", 0)
 
-        # Stop if we reach already scanned transactions
         if last_ts > 0 and timestamp <= last_ts:
             print("Reached last scan timestamp - stopping.")
             stop = True
@@ -107,11 +105,13 @@ while not stop:
         before = txns[-1].get("signature")
     time.sleep(0.2)
 
+    if page >= 285:
+        break
+
 print("\nNew wins found:", len(new_wins))
 
 all_wins = new_wins + existing.get("winners", [])
 all_wins.sort(key=lambda x: x["timestamp"], reverse=True)
-all_wins = all_wins[:10000]
 
 lb = defaultdict(lambda: {"total_sol": 0.0, "win_count": 0, "last_win": ""})
 for w in all_wins:
@@ -130,7 +130,7 @@ output = {
         "unique_winners": len(lb),
         "last_updated": datetime.now(tz=timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
     },
-    "winners": all_wins[:10000],
+    "winners": all_wins,
     "leaderboard": [
         {
             "rank": i + 1,
