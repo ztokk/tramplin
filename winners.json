@@ -1,0 +1,10 @@
+{
+  "stats": {
+    "total_wins": 0,
+    "total_sol_distributed": 0,
+    "unique_winners": 0,
+    "last_updated": "noch nicht gescannt"
+  },
+  "winners": [],
+  "leaderboard": []
+}

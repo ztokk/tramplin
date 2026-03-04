@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tramplin.io — SOL Winners Board</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --sol: #9945FF;
+      --sol2: #14F195;
+      --bg: #060612;
+      --bg2: #0d0d20;
+      --card: #0f0f1e;
+      --border: rgba(153, 69, 255, 0.2);
+      --text: #e8e8f0;
+      --muted: #5a5a7a;
+      --gold: #FFD700;
+      --silver: #C0C0C0;
+      --bronze: #CD7F32;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Syne', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── Background effects ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 40% at 20% 10%, rgba(153,69,255,0.12) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 30% at 80% 80%, rgba(20,241,149,0.08) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .grid-bg {
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(153,69,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(153,69,255,0.04) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── Layout ── */
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 20px 80px;
+    }
+
+    /* ── Header ── */
+    header {
+      text-align: center;
+      margin-bottom: 60px;
+      animation: fadeDown 0.8s ease both;
+    }
+
+    .logo-badge {
+      display: inline-block;
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--sol2);
+      border: 1px solid rgba(20,241,149,0.3);
+      padding: 6px 16px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: clamp(36px, 6vw, 64px);
+      font-weight: 800;
+      line-height: 1.1;
+      background: linear-gradient(135deg, #fff 0%, var(--sol) 60%, var(--sol2) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 12px;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 15px;
+      font-family: 'Space Mono', monospace;
+    }
+
+    .contract-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 16px;
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+      background: rgba(153,69,255,0.08);
+      border: 1px solid var(--border);
+      padding: 8px 14px;
+      border-radius: 8px;
+    }
+
+    .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--sol2); animation: pulse 2s infinite; }
+
+    /* ── Stats bar ── */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin-bottom: 50px;
+      animation: fadeUp 0.8s 0.2s ease both;
+    }
+
+    .stat-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s, transform 0.2s;
+    }
+
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(153,69,255,0.05), transparent);
+      pointer-events: none;
+    }
+
+    .stat-card:hover { border-color: rgba(153,69,255,0.5); transform: translateY(-2px); }
+
+    .stat-value {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--sol2);
+      margin-bottom: 4px;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: var(--muted);
+      font-family: 'Space Mono', monospace;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* ── Section titles ── */
+    .section-title {
+      font-size: 13px;
+      font-family: 'Space Mono', monospace;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--sol);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, var(--border), transparent);
+    }
+
+    /* ── Tabs ── */
+    .tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 24px;
+      animation: fadeUp 0.8s 0.3s ease both;
+    }
+
+    .tab {
+      padding: 10px 22px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--muted);
+      font-family: 'Space Mono', monospace;
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .tab.active {
+      background: var(--sol);
+      border-color: var(--sol);
+      color: #fff;
+    }
+
+    .tab:hover:not(.active) { border-color: var(--sol); color: var(--text); }
+
+    /* ── Search ── */
+    .search-wrap {
+      margin-bottom: 24px;
+      animation: fadeUp 0.8s 0.35s ease both;
+    }
+
+    .search-input {
+      width: 100%;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 18px;
+      color: var(--text);
+      font-family: 'Space Mono', monospace;
+      font-size: 13px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .search-input::placeholder { color: var(--muted); }
+    .search-input:focus { border-color: var(--sol); }
+
+    /* ── Leaderboard table ── */
+    .board {
+      animation: fadeUp 0.8s 0.4s ease both;
+    }
+
+    .board-row {
+      display: grid;
+      grid-template-columns: 56px 1fr 130px 80px 160px;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 20px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      margin-bottom: 8px;
+      transition: border-color 0.2s, transform 0.2s;
+      cursor: default;
+    }
+
+    .board-row:hover { border-color: rgba(153,69,255,0.4); transform: translateX(4px); }
+
+    .board-row.top1 { border-color: rgba(255,215,0,0.4); background: rgba(255,215,0,0.04); }
+    .board-row.top2 { border-color: rgba(192,192,192,0.3); }
+    .board-row.top3 { border-color: rgba(205,127,50,0.3); }
+
+    .rank {
+      font-size: 18px;
+      font-weight: 800;
+      text-align: center;
+      font-family: 'Space Mono', monospace;
+    }
+
+    .rank-1 { color: var(--gold); }
+    .rank-2 { color: var(--silver); }
+    .rank-3 { color: var(--bronze); }
+    .rank-n { color: var(--muted); font-size: 14px; }
+
+    .wallet-addr {
+      font-family: 'Space Mono', monospace;
+      font-size: 13px;
+      color: var(--text);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .wallet-short { display: none; }
+
+    .sol-amount {
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--sol2);
+      text-align: right;
+      font-family: 'Space Mono', monospace;
+    }
+
+    .win-count {
+      text-align: center;
+      font-family: 'Space Mono', monospace;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .win-badge {
+      display: inline-block;
+      background: rgba(153,69,255,0.15);
+      border: 1px solid rgba(153,69,255,0.3);
+      color: var(--sol);
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-family: 'Space Mono', monospace;
+    }
+
+    .last-win {
+      font-size: 11px;
+      color: var(--muted);
+      font-family: 'Space Mono', monospace;
+      text-align: right;
+    }
+
+    /* ── Recent wins ── */
+    .recent-list { animation: fadeUp 0.8s 0.4s ease both; }
+
+    .recent-row {
+      display: grid;
+      grid-template-columns: 1fr 120px 160px;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 20px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin-bottom: 8px;
+      transition: border-color 0.2s;
+    }
+
+    .recent-row:hover { border-color: rgba(20,241,149,0.3); }
+
+    /* ── Panels ── */
+    .panel { display: none; }
+    .panel.active { display: block; }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      margin-top: 60px;
+      color: var(--muted);
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 1px;
+    }
+
+    .update-info {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+    }
+
+    /* ── Loading ── */
+    .loading {
+      text-align: center;
+      padding: 60px;
+      color: var(--muted);
+      font-family: 'Space Mono', monospace;
+    }
+
+    .spinner {
+      width: 32px; height: 32px;
+      border: 2px solid var(--border);
+      border-top-color: var(--sol);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 16px;
+    }
+
+    .error-msg {
+      text-align: center;
+      padding: 40px;
+      color: #ff6b6b;
+      font-family: 'Space Mono', monospace;
+      font-size: 13px;
+    }
+
+    /* ── Animations ── */
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 700px) {
+      .board-row { grid-template-columns: 40px 1fr 100px; }
+      .win-count, .last-win { display: none; }
+      .wallet-full { display: none; }
+      .wallet-short { display: block; }
+      .recent-row { grid-template-columns: 1fr 100px; }
+      .recent-row .recent-time { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="grid-bg"></div>
+  <div class="container">
+
+    <!-- Header -->
+    <header>
+      <div class="logo-badge">🪂 tramplin.io</div>
+      <h1>SOL Winners Board</h1>
+      <p class="subtitle">Live-Tracking aller Gewinne · Updates täglich</p>
+      <div class="contract-tag">
+        <span class="dot"></span>
+        <span id="contract-display">3NJyz...zQ35</span>
+      </div>
+    </header>
+
+    <!-- Stats -->
+    <div class="stats-grid" id="stats-grid">
+      <div class="loading"><div class="spinner"></div>Lade Daten...</div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <button class="tab active" onclick="showPanel('leaderboard', this)">🏆 Leaderboard</button>
+      <button class="tab" onclick="showPanel('recent', this)">⚡ Letzte Wins</button>
+    </div>
+
+    <!-- Search -->
+    <div class="search-wrap">
+      <input class="search-input" id="search-input" type="text"
+        placeholder="🔍  Wallet-Adresse suchen..." oninput="filterResults()" />
+    </div>
+
+    <!-- Leaderboard Panel -->
+    <div class="panel active" id="panel-leaderboard">
+      <div class="section-title">Top Gewinner</div>
+      <div class="board" id="leaderboard-content">
+        <div class="loading"><div class="spinner"></div>Lade...</div>
+      </div>
+    </div>
+
+    <!-- Recent Panel -->
+    <div class="panel" id="panel-recent">
+      <div class="section-title">Neueste Wins</div>
+      <div class="recent-list" id="recent-content">
+        <div class="loading"><div class="spinner"></div>Lade...</div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <div class="update-info">
+        <span class="dot"></span>
+        <span id="last-updated">Wird geladen...</span>
+      </div>
+    </footer>
+
+  </div>
+
+  <script>
+    let allData = null;
+
+    // ── Daten laden ─────────────────────────────────────────────────────────
+    async function loadData() {
+      try {
+        const res = await fetch('winners.json?t=' + Date.now());
+        if (!res.ok) throw new Error('Datei nicht gefunden');
+        allData = await res.json();
+        renderAll(allData);
+      } catch (e) {
+        document.getElementById('stats-grid').innerHTML =
+          `<div class="error-msg">⚠ winners.json nicht gefunden.<br>Bitte zuerst scan.py ausführen.</div>`;
+        document.getElementById('leaderboard-content').innerHTML = '';
+        document.getElementById('recent-content').innerHTML = '';
+      }
+    }
+
+    // ── Alles rendern ────────────────────────────────────────────────────────
+    function renderAll(data) {
+      renderStats(data.stats);
+      renderLeaderboard(data.leaderboard || []);
+      renderRecent(data.winners || []);
+      document.getElementById('last-updated').textContent =
+        'Letztes Update: ' + (data.stats?.last_updated || 'unbekannt');
+    }
+
+    // ── Stats ────────────────────────────────────────────────────────────────
+    function renderStats(stats) {
+      const grid = document.getElementById('stats-grid');
+      grid.innerHTML = `
+        <div class="stat-card">
+          <div class="stat-value">${(stats.total_sol_distributed || 0).toFixed(2)}</div>
+          <div class="stat-label">SOL verteilt</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">${stats.total_wins || 0}</div>
+          <div class="stat-label">Gesamt Wins</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">${stats.unique_winners || 0}</div>
+          <div class="stat-label">Unique Gewinner</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">${stats.total_wins ? ((stats.total_sol_distributed || 0) / stats.total_wins).toFixed(3) : '0'}</div>
+          <div class="stat-label">Ø SOL / Win</div>
+        </div>
+      `;
+    }
+
+    // ── Leaderboard ──────────────────────────────────────────────────────────
+    function renderLeaderboard(entries, filter = '') {
+      const el = document.getElementById('leaderboard-content');
+      const filtered = filter
+        ? entries.filter(e => e.wallet.toLowerCase().includes(filter.toLowerCase()))
+        : entries;
+
+      if (!filtered.length) {
+        el.innerHTML = `<div class="loading">Keine Ergebnisse gefunden.</div>`;
+        return;
+      }
+
+      el.innerHTML = filtered.map(e => {
+        const rankClass = e.rank === 1 ? 'top1' : e.rank === 2 ? 'top2' : e.rank === 3 ? 'top3' : '';
+        const rankIcon = e.rank === 1 ? '🥇' : e.rank === 2 ? '🥈' : e.rank === 3 ? '🥉' : `#${e.rank}`;
+        const rankColor = e.rank <= 3 ? `rank-${e.rank}` : 'rank-n';
+        const short = e.wallet.slice(0,6) + '...' + e.wallet.slice(-4);
+        const solscanUrl = `https://solscan.io/account/${e.wallet}`;
+
+        return `
+          <div class="board-row ${rankClass}">
+            <div class="rank ${rankColor}">${rankIcon}</div>
+            <div>
+              <a class="wallet-addr wallet-full" href="${solscanUrl}" target="_blank" title="${e.wallet}"
+                 style="text-decoration:none;color:inherit">${e.wallet}</a>
+              <a class="wallet-addr wallet-short" href="${solscanUrl}" target="_blank"
+                 style="text-decoration:none;color:inherit">${short}</a>
+            </div>
+            <div class="sol-amount">${e.total_sol} SOL</div>
+            <div class="win-count"><span class="win-badge">${e.win_count}x</span></div>
+            <div class="last-win">${e.last_win || '—'}</div>
+          </div>`;
+      }).join('');
+    }
+
+    // ── Recent Wins ──────────────────────────────────────────────────────────
+    function renderRecent(wins, filter = '') {
+      const el = document.getElementById('recent-content');
+      const filtered = filter
+        ? wins.filter(w => w.wallet.toLowerCase().includes(filter.toLowerCase()))
+        : wins.slice(0, 100);
+
+      if (!filtered.length) {
+        el.innerHTML = `<div class="loading">Keine Ergebnisse gefunden.</div>`;
+        return;
+      }
+
+      el.innerHTML = filtered.map(w => {
+        const short = w.wallet.slice(0,6) + '...' + w.wallet.slice(-4);
+        const txUrl = `https://solscan.io/tx/${w.signature}`;
+        const acctUrl = `https://solscan.io/account/${w.wallet}`;
+        return `
+          <div class="recent-row">
+            <a class="wallet-addr" href="${acctUrl}" target="_blank"
+               style="text-decoration:none;color:inherit" title="${w.wallet}">
+              <span class="wallet-full">${w.wallet}</span>
+              <span class="wallet-short">${short}</span>
+            </a>
+            <div class="sol-amount">+${w.sol} SOL</div>
+            <div class="last-win recent-time">
+              <a href="${txUrl}" target="_blank" style="color:var(--muted);text-decoration:none">${w.time_str}</a>
+            </div>
+          </div>`;
+      }).join('');
+    }
+
+    // ── Tabs ─────────────────────────────────────────────────────────────────
+    function showPanel(name, btn) {
+      document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.getElementById('panel-' + name).classList.add('active');
+      btn.classList.add('active');
+      filterResults();
+    }
+
+    // ── Suche ────────────────────────────────────────────────────────────────
+    function filterResults() {
+      if (!allData) return;
+      const q = document.getElementById('search-input').value.trim();
+      renderLeaderboard(allData.leaderboard || [], q);
+      renderRecent(allData.winners || [], q);
+    }
+
+    // ── Start ────────────────────────────────────────────────────────────────
+    loadData();
+  </script>
+</body>
+</html>
