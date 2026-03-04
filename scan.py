@@ -1,171 +1,155 @@
-#!/usr/bin/env python3
-import json
-import os
-import time
 import requests
+import time
+import json
 from datetime import datetime, timezone
 from collections import defaultdict
 
-HELIUS_API_KEY = os.environ.get("HELIUS_API_KEY", "DEIN_API_KEY_HIER")
-CONTRACT_ADDRESS = "3NJyzGWjSHP4hZvsqakodi7jAtbufwd52vn1ek6EzQ35"
-OUTPUT_FILE = "winners.json"
-MAX_PAGES = 100
-WIN_MIN_SOL = 0.05
+import os
+API_KEY = os.environ.get("HELIUS_API_KEY", "")
+CONTRACT = "3NJyzGWjSHP4hZvsqakodi7jAtbufwd52vn1ek6EzQ35"
+OUTPUT = "winners.json"
+MIN_SOL = 0.05
 
-# Nur Transaktionen ab diesem Datum (Unix timestamp)
-# 1.3.2025 = 1740787200
-START_TIMESTAMP = 1740787200
+URL = "https://api.helius.xyz/v0/addresses/" + CONTRACT + "/transactions"
 
-HELIUS_URL = "https://api.helius.xyz/v0/addresses/" + CONTRACT_ADDRESS + "/transactions"
-
-def fetch_transactions(before_sig=None):
-    params = {
-        "api-key": HELIUS_API_KEY,
-        "limit": 100,
-    }
-    if before_sig:
-        params["before"] = before_sig
-    try:
-        resp = requests.get(HELIUS_URL, params=params, timeout=30)
-        resp.raise_for_status()
-        return resp.json()
-    except Exception as e:
-        print("  Fehler beim Abrufen: " + str(e))
-        return []
-
-def load_existing_data():
-    if os.path.exists(OUTPUT_FILE):
-        with open(OUTPUT_FILE, "r") as f:
-            return json.load(f)
-    return {"winners": [], "wallets": {}, "stats": {}, "last_updated": None}
-
-def parse_winner_from_tx(tx):
-    try:
-        native_transfers = tx.get("nativeTransfers", [])
-        timestamp = tx.get("timestamp", 0)
-        sig = tx.get("signature", "")
-
-        for transfer in native_transfers:
-            from_addr = transfer.get("fromUserAccount", "")
-            to_addr = transfer.get("toUserAccount", "")
-            amount_lamports = transfer.get("amount", 0)
-
-            if from_addr == CONTRACT_ADDRESS and to_addr and to_addr != CONTRACT_ADDRESS:
-                sol_amount = amount_lamports / 1000000000
-                if sol_amount >= WIN_MIN_SOL:
-                    return {
-                        "wallet": to_addr,
-                        "sol": round(sol_amount, 4),
-                        "timestamp": timestamp,
-                        "signature": sig,
-                        "time_str": datetime.fromtimestamp(timestamp, tz=timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
-                    }
-    except Exception:
-        pass
-    return None
-
-def build_leaderboard(wins_list):
-    wallets = defaultdict(lambda: {"total_sol": 0.0, "win_count": 0, "wins": []})
-    for w in wins_list:
-        wallet = w["wallet"]
-        wallets[wallet]["total_sol"] = round(wallets[wallet]["total_sol"] + w["sol"], 4)
-        wallets[wallet]["win_count"] += 1
-        wallets[wallet]["wins"].append({
-            "sol": w["sol"],
-            "time_str": w["time_str"],
-            "timestamp": w["timestamp"],
-            "signature": w["signature"]
-        })
-    sorted_wallets = dict(
-        sorted(wallets.items(), key=lambda x: x[1]["total_sol"], reverse=True)
-    )
-    return sorted_wallets
-
-def main():
-    print("Tramplin.io Scanner startet...")
-    print("Contract: " + CONTRACT_ADDRESS)
-
-    existing = load_existing_data()
-    known_sigs = {w["signature"] for w in existing.get("winners", [])}
-    print("Bekannte Transaktionen: " + str(len(known_sigs)))
-
-    all_wins = list(existing.get("winners", []))
-    new_count = 0
-    before_sig = None
-
-    print("Scanne Transaktionen ab 1.3.2025...")
-
-    for page in range(MAX_PAGES):
-        txns = fetch_transactions(before_sig)
-        if not txns:
-            print("Seite " + str(page+1) + ": Keine weiteren Transaktionen.")
-            break
-
-        print("Seite " + str(page+1) + ": " + str(len(txns)) + " Transaktionen...")
-
-        stop_scanning = False
-        for tx in txns:
-            sig = tx.get("signature", "")
-            timestamp = tx.get("timestamp", 0)
-
-            # Stoppen wenn wir vor dem Startdatum sind
-            if timestamp > 0 and timestamp < START_TIMESTAMP:
-                print("Startdatum 1.3.2025 erreicht, fertig.")
-                stop_scanning = True
-                break
-
-            if sig in known_sigs:
+def fetch_page(before=None):
+    params = {"api-key": API_KEY, "limit": 100}
+    if before:
+        params["before"] = before
+    for _ in range(5):
+        try:
+            r = requests.get(URL, params=params, timeout=30)
+            if r.status_code in (429, 502, 503, 504):
+                time.sleep(2)
                 continue
+            r.raise_for_status()
+            return r.json()
+        except:
+            time.sleep(2)
+    return []
 
-            result = parse_winner_from_tx(tx)
-            if result:
-                all_wins.append(result)
-                known_sigs.add(sig)
-                new_count += 1
+def load_existing():
+    if __import__('os').path.exists(OUTPUT):
+        with open(OUTPUT) as f:
+            return json.load(f)
+    return {"stats": {}, "winners": [], "leaderboard": []}
 
-        if stop_scanning:
+print("Tramplin.io incremental scan starting...\n")
+
+existing = load_existing()
+known_sigs = {w["signature"] for w in existing.get("winners", [])}
+
+# Get last scan timestamp
+last_ts = 0
+for w in existing.get("winners", []):
+    if w.get("timestamp", 0) > last_ts:
+        last_ts = w["timestamp"]
+
+if last_ts > 0:
+    last_str = datetime.fromtimestamp(last_ts, tz=timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+    print("Last scan:", last_str)
+    print("Scanning only NEW transactions since then...\n")
+else:
+    print("No existing data - full scan\n")
+
+new_wins = []
+before = None
+page = 0
+stop = False
+
+while not stop:
+    txns = fetch_page(before)
+    if not txns:
+        break
+
+    page += 1
+    print("Page", page, "| New wins:", len(new_wins))
+
+    for tx in txns:
+        sig = tx.get("signature", "")
+        timestamp = tx.get("timestamp", 0)
+
+        # Stop if we reach already scanned transactions
+        if last_ts > 0 and timestamp <= last_ts:
+            print("Reached last scan timestamp - stopping.")
+            stop = True
             break
 
-        before_sig = txns[-1].get("signature")
-        time.sleep(0.3)
+        if sig in known_sigs:
+            continue
 
-    print(str(new_count) + " neue Gewinne gefunden.")
+        account_data = tx.get("accountData", [])
+        if not account_data:
+            continue
 
-    all_wins.sort(key=lambda x: x["timestamp"], reverse=True)
-    wallets = build_leaderboard(all_wins)
+        candidates = []
+        for acc in account_data:
+            chg = acc.get("nativeBalanceChange", 0)
+            sol = chg / 1e9
+            if sol >= MIN_SOL:
+                candidates.append((acc.get("account", ""), sol))
 
-    total_sol = sum(w["sol"] for w in all_wins)
-    stats = {
+        if candidates:
+            candidates.sort(key=lambda x: x[1], reverse=True)
+            winner_wallet, winner_sol = candidates[0]
+            if winner_wallet and winner_wallet != CONTRACT:
+                time_str = datetime.fromtimestamp(timestamp, tz=timezone.utc).strftime("%Y-%m-%d %H:%M UTC") if timestamp else "unknown"
+                new_wins.append({
+                    "wallet": winner_wallet,
+                    "sol": round(winner_sol, 4),
+                    "timestamp": timestamp,
+                    "signature": sig,
+                    "time_str": time_str
+                })
+                known_sigs.add(sig)
+
+    if not stop:
+        before = txns[-1].get("signature")
+    time.sleep(0.2)
+
+print("\nNew wins found:", len(new_wins))
+
+all_wins = new_wins + existing.get("winners", [])
+all_wins.sort(key=lambda x: x["timestamp"], reverse=True)
+all_wins = all_wins[:2000]
+
+lb = defaultdict(lambda: {"total_sol": 0.0, "win_count": 0, "last_win": ""})
+for w in all_wins:
+    lb[w["wallet"]]["total_sol"] = round(lb[w["wallet"]]["total_sol"] + w["sol"], 4)
+    lb[w["wallet"]]["win_count"] += 1
+    if not lb[w["wallet"]]["last_win"]:
+        lb[w["wallet"]]["last_win"] = w["time_str"]
+
+sorted_lb = sorted(lb.items(), key=lambda x: x[1]["total_sol"], reverse=True)
+total_sol = sum(w["sol"] for w in all_wins)
+
+output = {
+    "stats": {
         "total_wins": len(all_wins),
-        "total_sol_distributed": round(total_sol, 4),
-        "unique_winners": len(wallets),
+        "total_sol_distributed": round(total_sol, 2),
+        "unique_winners": len(lb),
         "last_updated": datetime.now(tz=timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
-    }
+    },
+    "winners": all_wins[:500],
+    "leaderboard": [
+        {
+            "rank": i + 1,
+            "wallet": wallet,
+            "total_sol": round(data["total_sol"], 2),
+            "win_count": data["win_count"],
+            "last_win": data["last_win"]
+        }
+        for i, (wallet, data) in enumerate(sorted_lb[:100])
+    ]
+}
 
-    output = {
-        "stats": stats,
-        "winners": all_wins[:500],
-        "leaderboard": [
-            {
-                "rank": i + 1,
-                "wallet": wallet,
-                "total_sol": data["total_sol"],
-                "win_count": data["win_count"],
-                "last_win": data["wins"][0]["time_str"] if data["wins"] else ""
-            }
-            for i, (wallet, data) in enumerate(list(wallets.items())[:100])
-        ]
-    }
+with open(OUTPUT, "w") as f:
+    json.dump(output, f, indent=2)
 
-    with open(OUTPUT_FILE, "w") as f:
-        json.dump(output, f, indent=2)
-
-    print("Gesamt Wins: " + str(stats["total_wins"]))
-    print("Gesamt SOL: " + str(stats["total_sol_distributed"]))
-    print("Unique Gewinner: " + str(stats["unique_winners"]))
-    print("Top 5:")
-    for entry in output["leaderboard"][:5]:
-        print("#" + str(entry["rank"]) + " " + entry["wallet"][:8] + "... -> " + str(entry["total_sol"]) + " SOL (" + str(entry["win_count"]) + "x)")
-
-if __name__ == "__main__":
-    main()
+print("Saved to", OUTPUT)
+print("Total wins:", len(all_wins))
+print("Total SOL:", round(total_sol, 2))
+print("Unique winners:", len(lb))
+print("\nTop 5:")
+for e in output["leaderboard"][:5]:
+    print("#" + str(e["rank"]), e["wallet"][:8] + "...", "->", str(e["total_sol"]) + " SOL (" + str(e["win_count"]) + "x)")
