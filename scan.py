@@ -111,7 +111,7 @@ print("\nNew wins found:", len(new_wins))
 
 all_wins = new_wins + existing.get("winners", [])
 all_wins.sort(key=lambda x: x["timestamp"], reverse=True)
-all_wins = all_wins[:2000]
+all_wins = all_wins[:10000]
 
 lb = defaultdict(lambda: {"total_sol": 0.0, "win_count": 0, "last_win": ""})
 for w in all_wins:
@@ -130,7 +130,7 @@ output = {
         "unique_winners": len(lb),
         "last_updated": datetime.now(tz=timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
     },
-    "winners": all_wins[:500],
+    "winners": all_wins[:10000],
     "leaderboard": [
         {
             "rank": i + 1,
