@@ -37,12 +37,10 @@ def load_existing():
 print("Tramplin.io incremental scan starting...\n")
 
 existing = load_existing()
-known_sigs = {w["signature"] for w in existing.get("winners", [])}
+existing_wins = existing.get("winners", [])
+known_sigs = {w["signature"] for w in existing_wins}
 
-last_ts = 0
-for w in existing.get("winners", []):
-    if w.get("timestamp", 0) > last_ts:
-        last_ts = w["timestamp"]
+last_ts = max((w.get("timestamp", 0) for w in existing_wins), default=0)
 
 if last_ts > 0:
     last_str = datetime.fromtimestamp(last_ts, tz=timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
@@ -110,8 +108,13 @@ while not stop:
 
 print("\nNew wins found:", len(new_wins))
 
-all_wins = new_wins + existing.get("winners", [])
+all_wins = new_wins + existing_wins
 all_wins.sort(key=lambda x: x["timestamp"], reverse=True)
+
+# SAFETY CHECK: never save less data than we already have
+if len(all_wins) < len(existing_wins):
+    print("SAFETY: new total (" + str(len(all_wins)) + ") < existing (" + str(len(existing_wins)) + ") - keeping existing data!")
+    all_wins = existing_wins
 
 lb = defaultdict(lambda: {"total_sol": 0.0, "win_count": 0, "last_win": ""})
 for w in all_wins:
