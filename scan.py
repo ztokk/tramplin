@@ -1,9 +1,4 @@
 #!/usr/bin/env python3
-“””
-Tramplin.io SOL Winners Scanner
-Scannt alle Transaktionen vom Smart Contract und baut winners.json
-“””
-
 import json
 import os
 import time
@@ -11,66 +6,56 @@ import requests
 from datetime import datetime, timezone
 from collections import defaultdict
 
-# ── Konfiguration ─────────────────────────────────────────────────────────────
-
 HELIUS_API_KEY = os.environ.get(“HELIUS_API_KEY”, “DEIN_API_KEY_HIER”)
 CONTRACT_ADDRESS = “3NJyzGWjSHP4hZvsqakodi7jAtbufwd52vn1ek6EzQ35”
 OUTPUT_FILE = “winners.json”
-MAX_PAGES = 50  # max. Seiten rückwirkend scannen (1 Seite = 100 Txns)
+MAX_PAGES = 100
+WIN_MIN_SOL = 0.05
 
-HELIUS_URL = f”https://api.helius.xyz/v0/addresses/{CONTRACT_ADDRESS}/transactions”
-WIN_MIN_SOL = 0.05  # Mindest-SOL für einen Gewinn (filtert Fees raus)
+# Nur Transaktionen ab diesem Datum (Unix timestamp)
 
-# ── Hilfsfunktionen ───────────────────────────────────────────────────────────
+# 1.3.2025 = 1740787200
+
+START_TIMESTAMP = 1740787200
+
+HELIUS_URL = “https://api.helius.xyz/v0/addresses/” + CONTRACT_ADDRESS + “/transactions”
 
 def fetch_transactions(before_sig=None):
-“”“Holt eine Seite Transaktionen vom Contract.”””
 params = {
 “api-key”: HELIUS_API_KEY,
 “limit”: 100,
 }
 if before_sig:
 params[“before”] = before_sig
-
-```
 try:
-    resp = requests.get(HELIUS_URL, params=params, timeout=30)
-    resp.raise_for_status()
-    return resp.json()
+resp = requests.get(HELIUS_URL, params=params, timeout=30)
+resp.raise_for_status()
+return resp.json()
 except Exception as e:
-    print(f"  ⚠ Fehler beim Abrufen: {e}")
-    return []
-```
+print(”  Fehler beim Abrufen: “ + str(e))
+return []
 
 def load_existing_data():
-“”“Lädt bestehende winners.json falls vorhanden.”””
 if os.path.exists(OUTPUT_FILE):
 with open(OUTPUT_FILE, “r”) as f:
 return json.load(f)
 return {“winners”: [], “wallets”: {}, “stats”: {}, “last_updated”: None}
 
 def parse_winner_from_tx(tx):
-“””
-Extrahiert Gewinner-Wallet und SOL-Betrag aus einer Transaktion.
-Gibt (wallet, sol_amount, timestamp) oder None zurück.
-“””
 try:
-# Helius gibt native transfers direkt zurück
 native_transfers = tx.get(“nativeTransfers”, [])
 timestamp = tx.get(“timestamp”, 0)
 sig = tx.get(“signature”, “”)
 
 ```
-    # Wir suchen Transfers VOM Contract an andere Wallets (= Gewinnauszahlung)
     for transfer in native_transfers:
         from_addr = transfer.get("fromUserAccount", "")
         to_addr = transfer.get("toUserAccount", "")
         amount_lamports = transfer.get("amount", 0)
 
-        # Transfer vom Contract an andere Wallet = Gewinn
         if from_addr == CONTRACT_ADDRESS and to_addr and to_addr != CONTRACT_ADDRESS:
-            sol_amount = amount_lamports / 1_000_000_000  # Lamports → SOL
-            if sol_amount >= WIN_MIN_SOL:  # Mindestbetrag filtern (Fees ignorieren)
+            sol_amount = amount_lamports / 1000000000
+            if sol_amount >= WIN_MIN_SOL:
                 return {
                     "wallet": to_addr,
                     "sol": round(sol_amount, 4),
@@ -84,84 +69,76 @@ return None
 ```
 
 def build_leaderboard(wins_list):
-“”“Baut Wallet-Statistiken aus der Wins-Liste.”””
 wallets = defaultdict(lambda: {“total_sol”: 0.0, “win_count”: 0, “wins”: []})
-
-```
 for w in wins_list:
-    wallet = w["wallet"]
-    wallets[wallet]["total_sol"] = round(wallets[wallet]["total_sol"] + w["sol"], 4)
-    wallets[wallet]["win_count"] += 1
-    wallets[wallet]["wins"].append({
-        "sol": w["sol"],
-        "time_str": w["time_str"],
-        "timestamp": w["timestamp"],
-        "signature": w["signature"]
-    })
-
-# Sortieren nach Gesamt-SOL
+wallet = w[“wallet”]
+wallets[wallet][“total_sol”] = round(wallets[wallet][“total_sol”] + w[“sol”], 4)
+wallets[wallet][“win_count”] += 1
+wallets[wallet][“wins”].append({
+“sol”: w[“sol”],
+“time_str”: w[“time_str”],
+“timestamp”: w[“timestamp”],
+“signature”: w[“signature”]
+})
 sorted_wallets = dict(
-    sorted(wallets.items(), key=lambda x: x[1]["total_sol"], reverse=True)
+sorted(wallets.items(), key=lambda x: x[1][“total_sol”], reverse=True)
 )
 return sorted_wallets
-```
 
 def main():
-print(“🚀 Tramplin.io Scanner startet…”)
-print(f”   Contract: {CONTRACT_ADDRESS}”)
-print(f”   API Key:  {HELIUS_API_KEY[:8]}…”)
+print(“Tramplin.io Scanner startet…”)
+print(“Contract: “ + CONTRACT_ADDRESS)
 
 ```
-# Bestehende Daten laden
 existing = load_existing_data()
 known_sigs = {w["signature"] for w in existing.get("winners", [])}
-print(f"   Bekannte Transaktionen: {len(known_sigs)}")
+print("Bekannte Transaktionen: " + str(len(known_sigs)))
 
 all_wins = list(existing.get("winners", []))
 new_count = 0
 before_sig = None
 
-print("\n📡 Scanne Transaktionen...")
+print("Scanne Transaktionen ab 1.3.2025...")
 
 for page in range(MAX_PAGES):
     txns = fetch_transactions(before_sig)
     if not txns:
-        print(f"   Seite {page+1}: Keine weiteren Transaktionen.")
+        print("Seite " + str(page+1) + ": Keine weiteren Transaktionen.")
         break
 
-    print(f"   Seite {page+1}: {len(txns)} Transaktionen...")
+    print("Seite " + str(page+1) + ": " + str(len(txns)) + " Transaktionen...")
 
-    found_new = False
+    stop_scanning = False
     for tx in txns:
         sig = tx.get("signature", "")
+        timestamp = tx.get("timestamp", 0)
+
+        # Stoppen wenn wir vor dem Startdatum sind
+        if timestamp > 0 and timestamp < START_TIMESTAMP:
+            print("Startdatum 1.3.2025 erreicht, fertig.")
+            stop_scanning = True
+            break
+
         if sig in known_sigs:
-            continue  # schon bekannt, überspringen
+            continue
 
         result = parse_winner_from_tx(tx)
         if result:
             all_wins.append(result)
             known_sigs.add(sig)
             new_count += 1
-            found_new = True
 
-    before_sig = txns[-1].get("signature")
-
-    # Wenn alle Txns auf dieser Seite bekannt waren → fertig
-    if not found_new and len(known_sigs) > 0:
-        print("   Alle bekannten Daten erreicht, fertig.")
+    if stop_scanning:
         break
 
-    time.sleep(0.3)  # Rate limiting
+    before_sig = txns[-1].get("signature")
+    time.sleep(0.3)
 
-print(f"\n✅ {new_count} neue Gewinne gefunden.")
+print(str(new_count) + " neue Gewinne gefunden.")
 
-# Sortieren (neueste zuerst)
 all_wins.sort(key=lambda x: x["timestamp"], reverse=True)
-
-# Leaderboard bauen
 wallets = build_leaderboard(all_wins)
 
-# Statistiken
 total_sol = sum(w["sol"] for w in all_wins)
 stats = {
     "total_wins": len(all_wins),
@@ -170,10 +147,9 @@ stats = {
     "last_updated": datetime.now(tz=timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
 }
 
-# Output speichern
 output = {
     "stats": stats,
-    "winners": all_wins[:500],  # max. 500 letzte Wins
+    "winners": all_wins[:500],
     "leaderboard": [
         {
             "rank": i + 1,
@@ -189,14 +165,12 @@ output = {
 with open(OUTPUT_FILE, "w") as f:
     json.dump(output, f, indent=2)
 
-print(f"\n📊 Ergebnis:")
-print(f"   Gesamte Wins:       {stats['total_wins']}")
-print(f"   Gesamt SOL:         {stats['total_sol_distributed']} SOL")
-print(f"   Unique Gewinner:    {stats['unique_winners']}")
-print(f"   Gespeichert in:     {OUTPUT_FILE}")
-print(f"\n🏆 Top 5 Gewinner:")
+print("Gesamt Wins: " + str(stats["total_wins"]))
+print("Gesamt SOL: " + str(stats["total_sol_distributed"]))
+print("Unique Gewinner: " + str(stats["unique_winners"]))
+print("Top 5:")
 for entry in output["leaderboard"][:5]:
-    print(f"   #{entry['rank']} {entry['wallet'][:8]}... → {entry['total_sol']} SOL ({entry['win_count']}x)")
+    print("#" + str(entry["rank"]) + " " + entry["wallet"][:8] + "... -> " + str(entry["total_sol"]) + " SOL (" + str(entry["win_count"]) + "x)")
 ```
 
 if **name** == “**main**”:
