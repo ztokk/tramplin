@@ -1,9 +1,11 @@
 <!DOCTYPE html>
+
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tramplin.io — SOL Winners Board</title>
+  <!-- English version -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
   <style>
@@ -21,446 +23,451 @@
       --bronze: #CD7F32;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+```
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Syne', sans-serif;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Syne', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
 
-    /* ── Background effects ── */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 60% 40% at 20% 10%, rgba(153,69,255,0.12) 0%, transparent 60%),
-        radial-gradient(ellipse 50% 30% at 80% 80%, rgba(20,241,149,0.08) 0%, transparent 60%);
-      pointer-events: none;
-      z-index: 0;
-    }
+/* ── Background effects ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 40% at 20% 10%, rgba(153,69,255,0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 30% at 80% 80%, rgba(20,241,149,0.08) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
 
-    .grid-bg {
-      position: fixed;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(153,69,255,0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(153,69,255,0.04) 1px, transparent 1px);
-      background-size: 40px 40px;
-      pointer-events: none;
-      z-index: 0;
-    }
+.grid-bg {
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(153,69,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(153,69,255,0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
+}
 
-    /* ── Layout ── */
-    .container {
-      position: relative;
-      z-index: 1;
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 40px 20px 80px;
-    }
+/* ── Layout ── */
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 20px 80px;
+}
 
-    /* ── Header ── */
-    header {
-      text-align: center;
-      margin-bottom: 60px;
-      animation: fadeDown 0.8s ease both;
-    }
+/* ── Header ── */
+header {
+  text-align: center;
+  margin-bottom: 60px;
+  animation: fadeDown 0.8s ease both;
+}
 
-    .logo-badge {
-      display: inline-block;
-      font-family: 'Space Mono', monospace;
-      font-size: 11px;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      color: var(--sol2);
-      border: 1px solid rgba(20,241,149,0.3);
-      padding: 6px 16px;
-      border-radius: 20px;
-      margin-bottom: 20px;
-    }
+.logo-badge {
+  display: inline-block;
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--sol2);
+  border: 1px solid rgba(20,241,149,0.3);
+  padding: 6px 16px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
 
-    h1 {
-      font-size: clamp(36px, 6vw, 64px);
-      font-weight: 800;
-      line-height: 1.1;
-      background: linear-gradient(135deg, #fff 0%, var(--sol) 60%, var(--sol2) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: 12px;
-    }
+h1 {
+  font-size: clamp(36px, 6vw, 64px);
+  font-weight: 800;
+  line-height: 1.1;
+  background: linear-gradient(135deg, #fff 0%, var(--sol) 60%, var(--sol2) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 12px;
+}
 
-    .subtitle {
-      color: var(--muted);
-      font-size: 15px;
-      font-family: 'Space Mono', monospace;
-    }
+.subtitle {
+  color: var(--muted);
+  font-size: 15px;
+  font-family: 'Space Mono', monospace;
+}
 
-    .contract-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin-top: 16px;
-      font-family: 'Space Mono', monospace;
-      font-size: 11px;
-      color: var(--muted);
-      background: rgba(153,69,255,0.08);
-      border: 1px solid var(--border);
-      padding: 8px 14px;
-      border-radius: 8px;
-    }
+.contract-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  background: rgba(153,69,255,0.08);
+  border: 1px solid var(--border);
+  padding: 8px 14px;
+  border-radius: 8px;
+}
 
-    .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--sol2); animation: pulse 2s infinite; }
+.dot { width: 6px; height: 6px; border-radius: 50%; background: var(--sol2); animation: pulse 2s infinite; }
 
-    /* ── Stats bar ── */
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 16px;
-      margin-bottom: 50px;
-      animation: fadeUp 0.8s 0.2s ease both;
-    }
+/* ── Stats bar ── */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-bottom: 50px;
+  animation: fadeUp 0.8s 0.2s ease both;
+}
 
-    .stat-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 24px 20px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-      transition: border-color 0.3s, transform 0.2s;
-    }
+.stat-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px 20px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s, transform 0.2s;
+}
 
-    .stat-card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(153,69,255,0.05), transparent);
-      pointer-events: none;
-    }
+.stat-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(153,69,255,0.05), transparent);
+  pointer-events: none;
+}
 
-    .stat-card:hover { border-color: rgba(153,69,255,0.5); transform: translateY(-2px); }
+.stat-card:hover { border-color: rgba(153,69,255,0.5); transform: translateY(-2px); }
 
-    .stat-value {
-      font-size: 28px;
-      font-weight: 800;
-      color: var(--sol2);
-      margin-bottom: 4px;
-    }
+.stat-value {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--sol2);
+  margin-bottom: 4px;
+}
 
-    .stat-label {
-      font-size: 12px;
-      color: var(--muted);
-      font-family: 'Space Mono', monospace;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
+.stat-label {
+  font-size: 12px;
+  color: var(--muted);
+  font-family: 'Space Mono', monospace;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
 
-    /* ── Section titles ── */
-    .section-title {
-      font-size: 13px;
-      font-family: 'Space Mono', monospace;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--sol);
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
+/* ── Section titles ── */
+.section-title {
+  font-size: 13px;
+  font-family: 'Space Mono', monospace;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--sol);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
 
-    .section-title::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: linear-gradient(90deg, var(--border), transparent);
-    }
+.section-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, var(--border), transparent);
+}
 
-    /* ── Tabs ── */
-    .tabs {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 24px;
-      animation: fadeUp 0.8s 0.3s ease both;
-    }
+/* ── Tabs ── */
+.tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+  animation: fadeUp 0.8s 0.3s ease both;
+}
 
-    .tab {
-      padding: 10px 22px;
-      border-radius: 10px;
-      border: 1px solid var(--border);
-      background: transparent;
-      color: var(--muted);
-      font-family: 'Space Mono', monospace;
-      font-size: 13px;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
+.tab {
+  padding: 10px 22px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--muted);
+  font-family: 'Space Mono', monospace;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
 
-    .tab.active {
-      background: var(--sol);
-      border-color: var(--sol);
-      color: #fff;
-    }
+.tab.active {
+  background: var(--sol);
+  border-color: var(--sol);
+  color: #fff;
+}
 
-    .tab:hover:not(.active) { border-color: var(--sol); color: var(--text); }
+.tab:hover:not(.active) { border-color: var(--sol); color: var(--text); }
 
-    /* ── Search ── */
-    .search-wrap {
-      margin-bottom: 24px;
-      animation: fadeUp 0.8s 0.35s ease both;
-    }
+/* ── Search ── */
+.search-wrap {
+  margin-bottom: 24px;
+  animation: fadeUp 0.8s 0.35s ease both;
+}
 
-    .search-input {
-      width: 100%;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 14px 18px;
-      color: var(--text);
-      font-family: 'Space Mono', monospace;
-      font-size: 13px;
-      outline: none;
-      transition: border-color 0.2s;
-    }
+.search-input {
+  width: 100%;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 18px;
+  color: var(--text);
+  font-family: 'Space Mono', monospace;
+  font-size: 13px;
+  outline: none;
+  transition: border-color 0.2s;
+}
 
-    .search-input::placeholder { color: var(--muted); }
-    .search-input:focus { border-color: var(--sol); }
+.search-input::placeholder { color: var(--muted); }
+.search-input:focus { border-color: var(--sol); }
 
-    /* ── Leaderboard table ── */
-    .board {
-      animation: fadeUp 0.8s 0.4s ease both;
-    }
+/* ── Leaderboard table ── */
+.board {
+  animation: fadeUp 0.8s 0.4s ease both;
+}
 
-    .board-row {
-      display: grid;
-      grid-template-columns: 56px 1fr 130px 80px 160px;
-      align-items: center;
-      gap: 12px;
-      padding: 16px 20px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      margin-bottom: 8px;
-      transition: border-color 0.2s, transform 0.2s;
-      cursor: default;
-    }
+.board-row {
+  display: grid;
+  grid-template-columns: 56px 1fr 130px 80px 160px;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  margin-bottom: 8px;
+  transition: border-color 0.2s, transform 0.2s;
+  cursor: default;
+}
 
-    .board-row:hover { border-color: rgba(153,69,255,0.4); transform: translateX(4px); }
+.board-row:hover { border-color: rgba(153,69,255,0.4); transform: translateX(4px); }
 
-    .board-row.top1 { border-color: rgba(255,215,0,0.4); background: rgba(255,215,0,0.04); }
-    .board-row.top2 { border-color: rgba(192,192,192,0.3); }
-    .board-row.top3 { border-color: rgba(205,127,50,0.3); }
+.board-row.top1 { border-color: rgba(255,215,0,0.4); background: rgba(255,215,0,0.04); }
+.board-row.top2 { border-color: rgba(192,192,192,0.3); }
+.board-row.top3 { border-color: rgba(205,127,50,0.3); }
 
-    .rank {
-      font-size: 18px;
-      font-weight: 800;
-      text-align: center;
-      font-family: 'Space Mono', monospace;
-    }
+.rank {
+  font-size: 18px;
+  font-weight: 800;
+  text-align: center;
+  font-family: 'Space Mono', monospace;
+}
 
-    .rank-1 { color: var(--gold); }
-    .rank-2 { color: var(--silver); }
-    .rank-3 { color: var(--bronze); }
-    .rank-n { color: var(--muted); font-size: 14px; }
+.rank-1 { color: var(--gold); }
+.rank-2 { color: var(--silver); }
+.rank-3 { color: var(--bronze); }
+.rank-n { color: var(--muted); font-size: 14px; }
 
-    .wallet-addr {
-      font-family: 'Space Mono', monospace;
-      font-size: 13px;
-      color: var(--text);
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
+.wallet-addr {
+  font-family: 'Space Mono', monospace;
+  font-size: 13px;
+  color: var(--text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 
-    .wallet-short { display: none; }
+.wallet-short { display: none; }
 
-    .sol-amount {
-      font-weight: 700;
-      font-size: 16px;
-      color: var(--sol2);
-      text-align: right;
-      font-family: 'Space Mono', monospace;
-    }
+.sol-amount {
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--sol2);
+  text-align: right;
+  font-family: 'Space Mono', monospace;
+}
 
-    .win-count {
-      text-align: center;
-      font-family: 'Space Mono', monospace;
-      font-size: 12px;
-      color: var(--muted);
-    }
+.win-count {
+  text-align: center;
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  color: var(--muted);
+}
 
-    .win-badge {
-      display: inline-block;
-      background: rgba(153,69,255,0.15);
-      border: 1px solid rgba(153,69,255,0.3);
-      color: var(--sol);
-      padding: 3px 10px;
-      border-radius: 20px;
-      font-size: 11px;
-      font-family: 'Space Mono', monospace;
-    }
+.win-badge {
+  display: inline-block;
+  background: rgba(153,69,255,0.15);
+  border: 1px solid rgba(153,69,255,0.3);
+  color: var(--sol);
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-family: 'Space Mono', monospace;
+}
 
-    .last-win {
-      font-size: 11px;
-      color: var(--muted);
-      font-family: 'Space Mono', monospace;
-      text-align: right;
-    }
+.last-win {
+  font-size: 11px;
+  color: var(--muted);
+  font-family: 'Space Mono', monospace;
+  text-align: right;
+}
 
-    /* ── Recent wins ── */
-    .recent-list { animation: fadeUp 0.8s 0.4s ease both; }
+/* ── Recent wins ── */
+.recent-list { animation: fadeUp 0.8s 0.4s ease both; }
 
-    .recent-row {
-      display: grid;
-      grid-template-columns: 1fr 120px 160px;
-      align-items: center;
-      gap: 12px;
-      padding: 14px 20px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      margin-bottom: 8px;
-      transition: border-color 0.2s;
-    }
+.recent-row {
+  display: grid;
+  grid-template-columns: 1fr 120px 160px;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 20px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 8px;
+  transition: border-color 0.2s;
+}
 
-    .recent-row:hover { border-color: rgba(20,241,149,0.3); }
+.recent-row:hover { border-color: rgba(20,241,149,0.3); }
 
-    /* ── Panels ── */
-    .panel { display: none; }
-    .panel.active { display: block; }
+/* ── Panels ── */
+.panel { display: none; }
+.panel.active { display: block; }
 
-    /* ── Footer ── */
-    footer {
-      text-align: center;
-      margin-top: 60px;
-      color: var(--muted);
-      font-family: 'Space Mono', monospace;
-      font-size: 11px;
-      letter-spacing: 1px;
-    }
+/* ── Footer ── */
+footer {
+  text-align: center;
+  margin-top: 60px;
+  color: var(--muted);
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 1px;
+}
 
-    .update-info {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 18px;
-      border: 1px solid var(--border);
-      border-radius: 20px;
-    }
+.update-info {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+}
 
-    /* ── Loading ── */
-    .loading {
-      text-align: center;
-      padding: 60px;
-      color: var(--muted);
-      font-family: 'Space Mono', monospace;
-    }
+/* ── Loading ── */
+.loading {
+  text-align: center;
+  padding: 60px;
+  color: var(--muted);
+  font-family: 'Space Mono', monospace;
+}
 
-    .spinner {
-      width: 32px; height: 32px;
-      border: 2px solid var(--border);
-      border-top-color: var(--sol);
-      border-radius: 50%;
-      animation: spin 0.8s linear infinite;
-      margin: 0 auto 16px;
-    }
+.spinner {
+  width: 32px; height: 32px;
+  border: 2px solid var(--border);
+  border-top-color: var(--sol);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin: 0 auto 16px;
+}
 
-    .error-msg {
-      text-align: center;
-      padding: 40px;
-      color: #ff6b6b;
-      font-family: 'Space Mono', monospace;
-      font-size: 13px;
-    }
+.error-msg {
+  text-align: center;
+  padding: 40px;
+  color: #ff6b6b;
+  font-family: 'Space Mono', monospace;
+  font-size: 13px;
+}
 
-    /* ── Animations ── */
-    @keyframes fadeDown {
-      from { opacity: 0; transform: translateY(-20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.3; }
-    }
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
+/* ── Animations ── */
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
 
-    /* ── Responsive ── */
-    @media (max-width: 700px) {
-      .board-row { grid-template-columns: 40px 1fr 100px; }
-      .win-count, .last-win { display: none; }
-      .wallet-full { display: none; }
-      .wallet-short { display: block; }
-      .recent-row { grid-template-columns: 1fr 100px; }
-      .recent-row .recent-time { display: none; }
-    }
+/* ── Responsive ── */
+@media (max-width: 700px) {
+  .board-row { grid-template-columns: 40px 1fr 100px; }
+  .win-count, .last-win { display: none; }
+  .wallet-full { display: none; }
+  .wallet-short { display: block; }
+  .recent-row { grid-template-columns: 1fr 100px; }
+  .recent-row .recent-time { display: none; }
+}
+```
+
   </style>
 </head>
 <body>
   <div class="grid-bg"></div>
   <div class="container">
 
-    <!-- Header -->
-    <header>
-      <div class="logo-badge">🪂 tramplin.io</div>
-      <h1>SOL Winners Board</h1>
-      <p class="subtitle">Live-Tracking aller Gewinne · Updates täglich</p>
-      <div class="contract-tag">
-        <span class="dot"></span>
-        <span id="contract-display">3NJyz...zQ35</span>
-      </div>
-    </header>
+```
+<!-- Header -->
+<header>
+  <div class="logo-badge">🪂 tramplin.io</div>
+  <h1>SOL Winners Board</h1>
+  <p class="subtitle">Live-Tracking all Wins · Daily Updates</p>
+  <div class="contract-tag">
+    <span class="dot"></span>
+    <span id="contract-display">3NJyz...zQ35</span>
+  </div>
+</header>
 
-    <!-- Stats -->
-    <div class="stats-grid" id="stats-grid">
-      <div class="loading"><div class="spinner"></div>Lade Daten...</div>
-    </div>
+<!-- Stats -->
+<div class="stats-grid" id="stats-grid">
+  <div class="loading"><div class="spinner"></div>Loading data...</div>
+</div>
 
-    <!-- Tabs -->
-    <div class="tabs">
-      <button class="tab active" onclick="showPanel('leaderboard', this)">🏆 Leaderboard</button>
-      <button class="tab" onclick="showPanel('recent', this)">⚡ Letzte Wins</button>
-    </div>
+<!-- Tabs -->
+<div class="tabs">
+  <button class="tab active" onclick="showPanel('leaderboard', this)">🏆 Leaderboard</button>
+  <button class="tab" onclick="showPanel('recent', this)">⚡ Latest Wins</button>
+</div>
 
-    <!-- Search -->
-    <div class="search-wrap">
-      <input class="search-input" id="search-input" type="text"
-        placeholder="🔍  Wallet-Adresse suchen..." oninput="filterResults()" />
-    </div>
+<!-- Search -->
+<div class="search-wrap">
+  <input class="search-input" id="search-input" type="text"
+    placeholder="🔍  Search Wallet Address..." oninput="filterResults()" />
+</div>
 
-    <!-- Leaderboard Panel -->
-    <div class="panel active" id="panel-leaderboard">
-      <div class="section-title">Top Gewinner</div>
-      <div class="board" id="leaderboard-content">
-        <div class="loading"><div class="spinner"></div>Lade...</div>
-      </div>
-    </div>
+<!-- Leaderboard Panel -->
+<div class="panel active" id="panel-leaderboard">
+  <div class="section-title">Top Winners</div>
+  <div class="board" id="leaderboard-content">
+    <div class="loading"><div class="spinner"></div>Loading...</div>
+  </div>
+</div>
 
-    <!-- Recent Panel -->
-    <div class="panel" id="panel-recent">
-      <div class="section-title">Neueste Wins</div>
-      <div class="recent-list" id="recent-content">
-        <div class="loading"><div class="spinner"></div>Lade...</div>
-      </div>
-    </div>
+<!-- Recent Panel -->
+<div class="panel" id="panel-recent">
+  <div class="section-title">Latest Wins</div>
+  <div class="recent-list" id="recent-content">
+    <div class="loading"><div class="spinner"></div>Loading...</div>
+  </div>
+</div>
 
-    <!-- Footer -->
-    <footer>
-      <div class="update-info">
-        <span class="dot"></span>
-        <span id="last-updated">Wird geladen...</span>
-      </div>
-    </footer>
+<!-- Footer -->
+<footer>
+  <div class="update-info">
+    <span class="dot"></span>
+    <span id="last-updated">Loading...</span>
+  </div>
+</footer>
+```
 
   </div>
 
@@ -471,12 +478,12 @@
     async function loadData() {
       try {
         const res = await fetch('winners.json?t=' + Date.now());
-        if (!res.ok) throw new Error('Datei nicht gefunden');
+        if (!res.ok) throw new Error('File not found');
         allData = await res.json();
         renderAll(allData);
       } catch (e) {
         document.getElementById('stats-grid').innerHTML =
-          `<div class="error-msg">⚠ winners.json nicht gefunden.<br>Bitte zuerst scan.py ausführen.</div>`;
+          `<div class="error-msg">⚠ winners.json not found. Please run scan.py first.</div>`;
         document.getElementById('leaderboard-content').innerHTML = '';
         document.getElementById('recent-content').innerHTML = '';
       }
@@ -488,7 +495,7 @@
       renderLeaderboard(data.leaderboard || []);
       renderRecent(data.winners || []);
       document.getElementById('last-updated').textContent =
-        'Letztes Update: ' + (data.stats?.last_updated || 'unbekannt');
+        'Last Update: ' + (data.stats?.last_updated || 'unknown');
     }
 
     // ── Stats ────────────────────────────────────────────────────────────────
@@ -497,15 +504,15 @@
       grid.innerHTML = `
         <div class="stat-card">
           <div class="stat-value">${(stats.total_sol_distributed || 0).toFixed(2)}</div>
-          <div class="stat-label">SOL verteilt</div>
+          <div class="stat-label">SOL Distributed</div>
         </div>
         <div class="stat-card">
           <div class="stat-value">${stats.total_wins || 0}</div>
-          <div class="stat-label">Gesamt Wins</div>
+          <div class="stat-label">Total Wins</div>
         </div>
         <div class="stat-card">
           <div class="stat-value">${stats.unique_winners || 0}</div>
-          <div class="stat-label">Unique Gewinner</div>
+          <div class="stat-label">Unique Winners</div>
         </div>
         <div class="stat-card">
           <div class="stat-value">${stats.total_wins ? ((stats.total_sol_distributed || 0) / stats.total_wins).toFixed(3) : '0'}</div>
@@ -522,7 +529,7 @@
         : entries;
 
       if (!filtered.length) {
-        el.innerHTML = `<div class="loading">Keine Ergebnisse gefunden.</div>`;
+        el.innerHTML = `<div class="loading">No results found.</div>`;
         return;
       }
 
@@ -557,7 +564,7 @@
         : wins.slice(0, 100);
 
       if (!filtered.length) {
-        el.innerHTML = `<div class="loading">Keine Ergebnisse gefunden.</div>`;
+        el.innerHTML = `<div class="loading">No results found.</div>`;
         return;
       }
 
@@ -600,5 +607,6 @@
     // ── Start ────────────────────────────────────────────────────────────────
     loadData();
   </script>
+
 </body>
 </html>
