@@ -1,11 +1,18 @@
 {
   "stats": {
-    "total_wins": 637,
-    "total_sol_distributed": 81.244,
-    "unique_winners": 538,
-    "last_updated": "2026-03-05 12:18 UTC"
+    "total_wins": 638,
+    "total_sol_distributed": 81.341,
+    "unique_winners": 539,
+    "last_updated": "2026-03-05 12:30 UTC"
   },
   "winners": [
+    {
+      "wallet": "DvzaGoroVXtiXDnXwkLLWaMXDdaBLKBm1CaGaFgEhxK2",
+      "sol": 0.0968,
+      "timestamp": 1772713349,
+      "signature": "4usBq7v63k2nRrgyvqfRpaVJo8SvGWZ2S9pnTeJABYB5vdmhM2p28Hv9Z7GujA8hs5BSWapRz6GkHEJ4p5YoreVP",
+      "time_str": "2026-03-05 12:22 UTC"
+    },
     {
       "wallet": "Gdph5Q4Qdhu1mA7ZPF3vF4NLzv6PjiNT1Co69PLyMaLE",
       "sol": 0.0968,
