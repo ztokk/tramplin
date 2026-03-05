@@ -26,7 +26,7 @@
   .topbar{display:flex;justify-content:space-between;align-items:center;margin:14px 0 10px;gap:12px;flex-wrap:wrap;font-size:.65rem;color:var(--dim);letter-spacing:1px}
   .countdown{color:var(--gold);font-weight:700}
 
-  .stats-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:16px 0 16px}
+  .stats-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:16px 0 14px}
   .stat-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:18px;text-align:center;position:relative;overflow:hidden;transition:border-color .25s}
   .stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.5}
   .stat-card:hover{border-color:rgba(245,200,66,.25)}
@@ -34,9 +34,9 @@
   .stat-label{font-size:.6rem;letter-spacing:2px;color:var(--dim);text-transform:uppercase;margin-top:6px}
 
   /* Search */
-  .search-wrap{display:flex;justify-content:center;margin:10px 0 16px}
+  .search-wrap{display:flex;justify-content:center;margin:10px 0 14px}
+  .search-block{width:min(860px,100%)}
   .search{
-    width:min(860px,100%);
     display:flex;gap:10px;align-items:center;
     background:rgba(13,13,20,.85);
     border:1px solid var(--border);
@@ -44,13 +44,8 @@
     padding:10px 10px;
   }
   .search input{
-    flex:1;
-    background:transparent;
-    border:none;
-    outline:none;
-    color:var(--white);
-    font-family:'Space Mono',monospace;
-    font-size:.85rem;
+    flex:1;background:transparent;border:none;outline:none;
+    color:var(--white);font-family:'Space Mono',monospace;font-size:.85rem;
     padding:8px 10px;
   }
   .search input::placeholder{color:rgba(200,200,224,.35)}
@@ -76,6 +71,22 @@
     color:var(--text);
   }
 
+  .result{
+    margin-top:10px;
+    background:rgba(13,13,20,.85);
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:14px;
+  }
+  .result h3{font-family:'Syne',sans-serif;color:var(--white);font-size:.9rem;letter-spacing:2px;text-transform:uppercase}
+  .result .sub{color:var(--dim);font-size:.65rem;margin-top:6px;letter-spacing:1px}
+  .result .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+  .result .k{background:rgba(5,5,8,.6);border:1px solid var(--border);border-radius:12px;padding:12px;text-align:center}
+  .result .k .v{font-family:'Syne',sans-serif;color:var(--gold);font-weight:800;font-size:1.1rem}
+  .result .k .l{font-size:.6rem;color:var(--dim);letter-spacing:2px;text-transform:uppercase;margin-top:5px}
+  .status{ text-align:center; padding:16px 14px; color:var(--dim); font-size:.75rem; letter-spacing:2px; }
+  .error{ color:var(--red); }
+
   /* Panels */
   .grid{display:grid;grid-template-columns: 1.35fr .9fr;gap:14px;margin-top:8px;align-items:start}
   .panel{background:linear-gradient(180deg, rgba(245,200,66,.04), transparent 80%), var(--surface2);border:1px solid var(--border);border-radius:14px;overflow:hidden}
@@ -90,6 +101,8 @@
   .lb-row.top1{border-color:rgba(245,200,66,.42);background:rgba(245,200,66,.07)}
   .lb-row.top2{border-color:rgba(192,192,192,.25);background:rgba(192,192,192,.04)}
   .lb-row.top3{border-color:rgba(205,127,50,.25);background:rgba(205,127,50,.04)}
+  .lb-row.hit{ border-color: rgba(0,230,118,.35) !important; box-shadow: 0 0 0 1px rgba(0,230,118,.18) inset; }
+
   .rank{font-family:'Syne',sans-serif;font-weight:800;font-size:.9rem;text-align:center;color:var(--dim)}
   .rank.r1{color:var(--gold);font-size:1.05rem}
   .rank.r2{color:#c0c0c0}
@@ -108,25 +121,6 @@
   .win-time{color:var(--dim);font-size:.6rem;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .win-sol{color:var(--green);font-weight:800;font-size:.78rem;white-space:nowrap;font-family:'Syne',sans-serif}
 
-  /* Search results */
-  .result{
-    margin:10px 0 0;
-    background:rgba(13,13,20,.85);
-    border:1px solid var(--border);
-    border-radius:14px;
-    padding:14px;
-    width:min(860px,100%);
-  }
-  .result h3{font-family:'Syne',sans-serif;color:var(--white);font-size:.9rem;letter-spacing:2px;text-transform:uppercase}
-  .result .sub{color:var(--dim);font-size:.65rem;margin-top:6px;letter-spacing:1px}
-  .result .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
-  .result .k{background:rgba(5,5,8,.6);border:1px solid var(--border);border-radius:12px;padding:12px;text-align:center}
-  .result .k .v{font-family:'Syne',sans-serif;color:var(--gold);font-weight:800;font-size:1.1rem}
-  .result .k .l{font-size:.6rem;color:var(--dim);letter-spacing:2px;text-transform:uppercase;margin-top:5px}
-  .result .recentWins{margin-top:10px;display:flex;flex-direction:column;gap:6px}
-  .status{text-align:center;padding:18px 14px;color:var(--dim);font-size:.75rem;letter-spacing:2px}
-  .error{color:var(--red)}
-
   footer{text-align:center;padding:28px 0 40px;font-size:.6rem;color:var(--dim);letter-spacing:2px;border-top:1px solid var(--border);margin-top:18px}
 
   @media (max-width:980px){
@@ -137,7 +131,6 @@
   }
 </style>
 </head>
-
 <body>
 <div class="container">
   <header>
@@ -158,12 +151,11 @@
     <div class="stat-card"><div class="stat-value" id="statInterval">—</div><div class="stat-label">Interval (min)</div></div>
   </div>
 
-  <!-- Wallet search -->
+  <!-- Search (Top100 only) -->
   <div class="search-wrap">
-    <div style="width:min(860px,100%)">
+    <div class="search-block">
       <div class="search">
-        <input id="walletInput" placeholder="Search your wallet address (e.g. 9xQeWvG816bUx9EP...)"
-               autocomplete="off" spellcheck="false" />
+        <input id="walletInput" placeholder="Search wallet in Top100 (paste wallet address)…" autocomplete="off" spellcheck="false" />
         <button class="btn" id="searchBtn">Search</button>
         <button class="btn secondary" id="clearBtn">Clear</button>
       </div>
@@ -191,48 +183,51 @@
     </aside>
   </div>
 
-  <footer>TRAMPLIN.IO · SOL GIVEAWAY TRACKER · AUTO-REFRESH</footer>
+  <footer>TRAMPLIN.IO · SOL GIVEAWAY TRACKER</footer>
 </div>
 
 <script>
-const DATA_URL = 'winners.json';
+const FULL_URL = 'winners_full.json';
+const LIVE_URL = 'winners_live.json';
 const REFRESH_MS = 11 * 60 * 1000;
 let nextRefresh = Date.now() + REFRESH_MS;
 
-let DATA = null;
+let FULL = null;
+let LIVE = null;
 
 function num(x){ const n = Number(x); return Number.isFinite(n) ? n : 0; }
 function fmtWallet(w){ if(!w) return '—'; return w.length > 12 ? (w.slice(0,5)+'...'+w.slice(-5)) : w; }
-function isLikelyWallet(s){
-  // cheap check (base58-ish length)
-  return typeof s === 'string' && s.length >= 32 && s.length <= 60;
-}
+function looksLikeWallet(s){ return typeof s === 'string' && s.length >= 32 && s.length <= 60; }
 
-async function loadData(){
+async function loadAll(){
   try{
-    const r = await fetch(DATA_URL + '?t=' + Date.now(), { cache:'no-store' });
-    if(!r.ok) throw new Error('HTTP ' + r.status);
-    DATA = await r.json();
-    render(DATA);
+    const [rf, rl] = await Promise.all([
+      fetch(FULL_URL + '?t=' + Date.now(), { cache:'no-store' }),
+      fetch(LIVE_URL + '?t=' + Date.now(), { cache:'no-store' })
+    ]);
+    if(!rf.ok) throw new Error('FULL HTTP ' + rf.status);
+    if(!rl.ok) throw new Error('LIVE HTTP ' + rl.status);
+    FULL = await rf.json();
+    LIVE = await rl.json();
+    render();
     nextRefresh = Date.now() + REFRESH_MS;
   }catch(e){
-    document.getElementById('leaderboardList').innerHTML =
-      `<div class="status error">⚠ Error loading winners.json: ${e.message}</div>`;
-    document.getElementById('recentList').innerHTML =
-      `<div class="status error">⚠ Error loading winners.json: ${e.message}</div>`;
+    document.getElementById('leaderboardList').innerHTML = `<div class="status error">⚠ ${e.message}</div>`;
+    document.getElementById('recentList').innerHTML = `<div class="status error">⚠ ${e.message}</div>`;
   }
 }
 
-function render(data){
-  const stats = data.stats || {};
+function render(){
+  const stats = (FULL && FULL.stats) ? FULL.stats : {};
   document.getElementById('statWins').textContent    = (stats.total_wins || 0).toLocaleString();
   document.getElementById('statSol').textContent     = num(stats.total_sol_distributed || 0).toFixed(2);
   document.getElementById('statWallets').textContent = (stats.unique_winners || 0).toLocaleString();
   document.getElementById('statInterval').textContent= (stats.interval_minutes || 11).toString();
   document.getElementById('lastUpdated').textContent = 'Updated: ' + (stats.last_updated || '—');
 
-  const lb = data.leaderboard || [];
-  document.getElementById('lbMeta').textContent = lb.length ? `Showing ${Math.min(100, lb.length)} wallets` : 'No data';
+  // Leaderboard
+  const lb = (FULL && FULL.leaderboard) ? FULL.leaderboard : [];
+  document.getElementById('lbMeta').textContent = lb.length ? `Top ${Math.min(100, lb.length)} wallets` : 'No data';
 
   const maxSol = lb.length ? num(lb[0].total_sol) : 1;
   const lbEl = document.getElementById('leaderboardList');
@@ -245,7 +240,7 @@ function render(data){
       const rankClass = i===0?'r1':i===1?'r2':i===2?'r3':'';
       const pct = Math.max(0, Math.min(100, Math.round((num(e.total_sol) / maxSol) * 100)));
       return `
-        <div class="lb-row ${rowClass}">
+        <div class="lb-row ${rowClass}" data-wallet="${e.wallet}">
           <div class="rank ${rankClass}">${e.rank ?? (i+1)}</div>
           <div>
             <div class="wallet-addr" title="Hidden">${fmtWallet(e.wallet)}</div>
@@ -257,14 +252,15 @@ function render(data){
     }).join('');
   }
 
-  const wins = (data.winners || []).slice(0, 40);
+  // Live wins
+  const wins = (LIVE && LIVE.winners) ? LIVE.winners : [];
   document.getElementById('winsMeta').textContent = wins.length ? `Last ${wins.length} wins` : 'No wins';
   const recentEl = document.getElementById('recentList');
 
   if(!wins.length){
     recentEl.innerHTML = `<div class="status">No recent wins yet</div>`;
   } else {
-    recentEl.innerHTML = wins.map(w => `
+    recentEl.innerHTML = wins.slice(0, 80).map(w => `
       <div class="win-item">
         <div>
           <div class="win-wallet" title="Hidden">${fmtWallet(w.wallet)}</div>
@@ -276,56 +272,60 @@ function render(data){
   }
 }
 
-function searchWallet(){
-  const el = document.getElementById('walletInput');
-  const q = (el.value || '').trim();
+function clearHighlight(){
+  document.querySelectorAll('.lb-row.hit').forEach(el => el.classList.remove('hit'));
+}
+
+function searchTop100(){
+  const q = (document.getElementById('walletInput').value || '').trim();
   const out = document.getElementById('searchResult');
 
-  if(!DATA){
+  if(!FULL || !FULL.leaderboard){
     out.innerHTML = `<div class="result"><div class="status">Data not loaded yet</div></div>`;
     return;
   }
-  if(!isLikelyWallet(q)){
+  if(!looksLikeWallet(q)){
     out.innerHTML = `<div class="result"><div class="status error">Enter a valid wallet address</div></div>`;
+    clearHighlight();
     return;
   }
 
-  const wins = (DATA.winners || []).filter(w => (w.wallet || '') === q);
-  const lbRow = (DATA.leaderboard || []).find(r => r.wallet === q);
+  const row = (FULL.leaderboard || []).find(r => r.wallet === q);
+  clearHighlight();
 
-  const totalSol = wins.reduce((a,w)=>a + num(w.sol), 0);
-  const winCount = wins.length;
-  const lastWin = winCount ? (wins[0].time_str || '—') : '—';
-  const rank = lbRow ? lbRow.rank : '—';
+  if(!row){
+    out.innerHTML = `
+      <div class="result">
+        <h3>Not in Top100</h3>
+        <div class="sub">This search only checks the Top100 leaderboard.</div>
+      </div>`;
+    return;
+  }
+
+  // Highlight and scroll into view
+  const el = document.querySelector(`.lb-row[data-wallet="${CSS.escape(q)}"]`);
+  if(el){
+    el.classList.add('hit');
+    el.scrollIntoView({ behavior:'smooth', block:'center' });
+  }
 
   out.innerHTML = `
     <div class="result">
-      <h3>Your Wallet</h3>
-      <div class="sub">We never show full wallets publicly. This search matches exactly what you typed.</div>
+      <h3>Found in Top100</h3>
+      <div class="sub">Wallet: ${fmtWallet(q)} (hidden)</div>
       <div class="kpis">
-        <div class="k"><div class="v">${rank}</div><div class="l">Rank (Top100)</div></div>
-        <div class="k"><div class="v">${winCount}</div><div class="l">Wins</div></div>
-        <div class="k"><div class="v">${totalSol.toFixed(2)}</div><div class="l">Total SOL</div></div>
+        <div class="k"><div class="v">#${row.rank}</div><div class="l">Rank</div></div>
+        <div class="k"><div class="v">${row.win_count || 0}</div><div class="l">Wins</div></div>
+        <div class="k"><div class="v">${num(row.total_sol).toFixed(2)}</div><div class="l">Total SOL</div></div>
       </div>
-      <div class="sub" style="margin-top:10px">Last win: ${lastWin}</div>
-      <div class="recentWins">
-        ${(wins.slice(0,10)).map(w => `
-          <div class="win-item">
-            <div>
-              <div class="win-wallet">${fmtWallet(q)}</div>
-              <div class="win-time">${w.time_str || '—'}</div>
-            </div>
-            <div class="win-sol">+${num(w.sol).toFixed(2)} SOL</div>
-          </div>
-        `).join('') || `<div class="status">No wins found for this wallet</div>`}
-      </div>
-    </div>
-  `;
+      <div class="sub" style="margin-top:10px">Last win: ${row.last_win || '—'}</div>
+    </div>`;
 }
 
 function clearSearch(){
   document.getElementById('walletInput').value = '';
   document.getElementById('searchResult').innerHTML = '';
+  clearHighlight();
 }
 
 function tick(){
@@ -333,16 +333,16 @@ function tick(){
   const m = Math.floor(left / 60);
   const s = left % 60;
   document.getElementById('countdown').textContent = m + ':' + String(s).padStart(2,'0');
-  if(left === 0) loadData();
+  if(left === 0) loadAll();
 }
 
-document.getElementById('searchBtn').addEventListener('click', searchWallet);
+document.getElementById('searchBtn').addEventListener('click', searchTop100);
 document.getElementById('clearBtn').addEventListener('click', clearSearch);
-document.getElementById('walletInput').addEventListener('keydown', (e)=>{ if(e.key==='Enter') searchWallet(); });
+document.getElementById('walletInput').addEventListener('keydown', (e)=>{ if(e.key==='Enter') searchTop100(); });
 
-loadData();
+loadAll();
 setInterval(tick, 1000);
-setInterval(loadData, REFRESH_MS);
+setInterval(loadAll, REFRESH_MS);
 </script>
 </body>
 </html>
