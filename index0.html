@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Tramplin Winners</title>
+  <style>
+    body{font-family:system-ui,Arial,sans-serif;margin:0;padding:24px;background:#0b0b0b;color:#eaeaea}
+    .card{background:#111;border:1px solid #1f1f1f;border-radius:14px;padding:16px;margin:12px 0}
+    .row{display:flex;gap:12px;flex-wrap:wrap}
+    .kpi{flex:1;min-width:180px}
+    .muted{opacity:.7}
+    table{width:100%;border-collapse:collapse}
+    td,th{padding:10px;border-bottom:1px solid #1f1f1f;text-align:left}
+    code{font-family:ui-monospace,Menlo,monospace;font-size:12px}
+  </style>
+</head>
+<body>
+  <h1>Tramplin</h1>
+  <div class="muted" id="updated">loading…</div>
+
+  <div class="card row" id="kpis"></div>
+
+  <div class="card">
+    <h2>Leaderboard (Top 20)</h2>
+    <table id="lb"></table>
+  </div>
+
+  <div class="card">
+    <h2>Latest Wins (20)</h2>
+    <table id="wins"></table>
+  </div>
+
+<script>
+async function load() {
+  const res = await fetch("./winners.json?ts=" + Date.now(), { cache: "no-store" });
+  const data = await res.json();
+
+  document.getElementById("updated").textContent =
+    `Updated: ${data.stats?.last_updated || "-"} | Total wins: ${data.stats?.total_wins || 0}`;
+
+  const kpis = [
+    ["Total SOL distributed", data.stats?.total_sol_distributed ?? 0],
+    ["Unique winners", data.stats?.unique_winners ?? 0],
+    ["Interval (min)", data.stats?.interval_minutes ?? 11],
+  ];
+
+  document.getElementById("kpis").innerHTML = kpis.map(([k,v]) =>
+    `<div class="kpi"><div class="muted">${k}</div><div style="font-size:22px;margin-top:6px">${v}</div></div>`
+  ).join("");
+
+  // leaderboard
+  const lb = (data.leaderboard || []).slice(0,20);
+  document.getElementById("lb").innerHTML =
+    `<tr><th>#</th><th>Wallet</th><th>Total SOL</th><th>Wins</th><th>Last win</th></tr>` +
+    lb.map(r => `
+      <tr>
+        <td>${r.rank}</td>
+        <td><code>${r.wallet.slice(0,6)}…${r.wallet.slice(-6)}</code></td>
+        <td>${r.total_sol}</td>
+        <td>${r.win_count}</td>
+        <td class="muted">${r.last_win}</td>
+      </tr>
+    `).join("");
+
+  // latest wins
+  const wins = (data.winners || []).slice(0,20);
+  document.getElementById("wins").innerHTML =
+    `<tr><th>Time</th><th>Wallet</th><th>SOL</th><th>Sig</th></tr>` +
+    wins.map(w => `
+      <tr>
+        <td class="muted">${w.time_str}</td>
+        <td><code>${w.wallet.slice(0,6)}…${w.wallet.slice(-6)}</code></td>
+        <td>${w.sol}</td>
+        <td><code>${w.signature.slice(0,10)}…</code></td>
+      </tr>
+    `).join("");
+}
+
+load();
+// optional auto-refresh every 11 minutes
+setInterval(load, 11 * 60 * 1000);
+</script>
+</body>
+</html>
