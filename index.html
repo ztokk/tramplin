@@ -1,658 +1,675 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Tramplin.io — SOL Winners Board</title>
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+
 <style>
-  :root {
-  --bg: #050508;
-  --surface: #0d0d14;
-  --border: #1a1a2e;
+  :root{
+    --bg:#050508;
+    --surface:#0d0d14;
+    --surface2:#0a0a10;
+    --border:#1a1a2e;
 
-  --gold: #f5c842;
-  --gold2: #e8a020;
-  --green: #00e676;
+    --gold:#f5c842;
+    --gold2:#e8a020;
+    --green:#00e676;
 
-  --text: #ffffff;
-  --white: #ffffff;
-  --dim: #ffffff;
-}
-  
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    /* FORCE WHITE EVERYTHING */
+    --text:#ffffff;
+    --white:#ffffff;
+    --dim:#ffffff;
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Space Mono', monospace;
-    min-height: 100vh;
-    overflow-x: hidden;
+    --red:#ff5c5c;
   }
 
-  /* Animated background grid */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    background:var(--bg);
+    color:var(--white);
+    font-family:'Space Mono',monospace;
+    min-height:100vh;
+    overflow-x:hidden;
+  }
+
+  body::before{
+    content:'';
+    position:fixed;
+    inset:0;
     background-image:
-      linear-gradient(rgba(245,200,66,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(245,200,66,0.03) 1px, transparent 1px);
-    background-size: 40px 40px;
-    pointer-events: none;
-    z-index: 0;
+      linear-gradient(rgba(245,200,66,.03) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(245,200,66,.03) 1px,transparent 1px);
+    background-size:40px 40px;
+    pointer-events:none;
+    z-index:0
   }
 
-  .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 1; }
+  .container{max-width:1180px;margin:0 auto;padding:0 20px;position:relative;z-index:1}
 
-  /* ── Loading Overlay ── */
-  .loading-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(5,5,8,0.92);
-    backdrop-filter: blur(8px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999;
+  /* LOADING OVERLAY */
+  #loadingOverlay{
+    position:fixed; inset:0;
+    background:rgba(5,5,8,.92);
+    display:flex; align-items:center; justify-content:center;
+    z-index:9999;
+    backdrop-filter:blur(8px);
   }
-  .loading-box {
-    width: min(520px, 92vw);
-    background: rgba(13,13,20,0.85);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 22px 18px;
-    text-align: center;
+  .loadingBox{
+    width:min(520px,92vw);
+    background:rgba(13,13,20,.85);
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:22px 18px;
+    text-align:center;
   }
-  .loading-title {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    letter-spacing: 1px;
-    color: var(--white);
-    font-size: 1.1rem;
+  .loadingTitle{
+    font-family:'Syne',sans-serif;
+    font-weight:800;
+    letter-spacing:2px;
+    color:var(--white);
+    font-size:1.05rem;
+    text-transform:uppercase;
   }
-  .loading-sub {
-    margin-top: 8px;
-    color: var(--dim);
-    font-size: 0.7rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
+  .loadingSub{
+    margin-top:8px;
+    color:var(--white);
+    font-size:.72rem;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    opacity:.95;
   }
-  .loading-bar {
-    margin: 16px auto 0;
-    width: 100%;
-    height: 8px;
-    background: #0a0a10;
-    border: 1px solid var(--border);
-    border-radius: 999px;
-    overflow: hidden;
+  .loadingBar{
+    margin:16px auto 0;
+    width:100%;
+    height:8px;
+    background:#0a0a10;
+    border:1px solid var(--border);
+    border-radius:999px;
+    overflow:hidden;
   }
-  .loading-bar > div {
-    height: 100%;
-    width: 35%;
-    background: linear-gradient(90deg, var(--gold2), var(--gold));
-    animation: loadMove 1.2s ease-in-out infinite;
+  .loadingBar > div{
+    height:100%;
+    width:35%;
+    background:linear-gradient(90deg,var(--gold2),var(--gold));
+    animation:loadMove 1.2s ease-in-out infinite;
   }
-  @keyframes loadMove {
-    0% { transform: translateX(-120%); }
-    50% { transform: translateX(20%); }
-    100% { transform: translateX(120%); }
+  @keyframes loadMove{
+    0%{transform:translateX(-120%)}
+    50%{transform:translateX(20%)}
+    100%{transform:translateX(120%)}
   }
-  .loading-status {
-    margin-top: 12px;
-    font-size: 0.75rem;
-    color: var(--white);
+  .loadingStatus{
+    margin-top:12px;
+    font-size:.8rem;
+    color:var(--white);
+    opacity:.95;
   }
-  .loading-error {
-    margin-top: 10px;
-    color: #ff5555;
-    font-size: 0.75rem;
+  .loadingError{
+    margin-top:10px;
+    color:var(--red);
+    font-size:.8rem;
+    display:none;
   }
-  .btn-retry {
-    margin-top: 14px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    padding: 10px 14px;
-    border-radius: 10px;
-    border: 1px solid rgba(245,200,66,0.35);
-    background: rgba(245,200,66,0.08);
-    color: var(--white);
-    font-size: 0.75rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    cursor: pointer;
+  .retryBtn{
+    margin-top:14px;
+    padding:10px 14px;
+    border-radius:10px;
+    border:1px solid rgba(245,200,66,.35);
+    background:rgba(245,200,66,.08);
+    color:var(--white);
+    font-size:.75rem;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    cursor:pointer;
+    display:none;
   }
-  .btn-retry:hover { background: rgba(245,200,66,0.12); }
+  .retryBtn:hover{background:rgba(245,200,66,.12)}
 
-  /* ── Header ── */
-  header {
-    padding: 48px 0 32px;
-    text-align: center;
-    position: relative;
+  header{padding:44px 0 18px;text-align:center}
+  .logo-line{
+    font-family:'Syne',sans-serif;
+    font-size:clamp(2rem,6vw,3.5rem);
+    font-weight:800;
+    letter-spacing:-1px;
+    color:var(--white);
+    line-height:1;
   }
-
-  .logo-line {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(2rem, 6vw, 3.5rem);
-    font-weight: 800;
-    letter-spacing: -1px;
-    color: var(--white);
-    line-height: 1;
+  .logo-line span{color:var(--gold)}
+  .tagline{
+    margin-top:8px;
+    font-size:.7rem;
+    letter-spacing:4px;
+    color:var(--white);
+    text-transform:uppercase;
+    opacity:.95;
   }
-
-  .logo-line span {
-    color: var(--gold);
-    position: relative;
-  }
-
-  .tagline {
-    margin-top: 8px;
-    font-size: 0.7rem;
-    letter-spacing: 4px;
-    color: var(--white); /* was dim */
-    text-transform: uppercase;
-    opacity: 0.9;
-  }
-
-  /* Live indicator */
-  .live-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    margin-top: 20px;
-    padding: 6px 16px;
-    border: 1px solid rgba(0,230,118,0.3);
-    border-radius: 100px;
-    font-size: 0.65rem;
-    letter-spacing: 3px;
-    color: var(--green);
-    text-transform: uppercase;
-  }
-
-  .pulse {
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--green);
-    animation: pulse 1.5s ease infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.4; transform: scale(0.7); }
-  }
-
-  /* ── Stats Bar ── */
-  .stats-bar {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-    margin: 32px 0;
-  }
-
-  .stat-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 20px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-    transition: border-color 0.3s;
-  }
-
-  .stat-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--gold), transparent);
-    opacity: 0.5;
-  }
-
-  .stat-card:hover { border-color: rgba(245,200,66,0.3); }
-
-  .stat-value {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(1.4rem, 3vw, 2rem);
-    font-weight: 800;
-    color: var(--gold);
-    line-height: 1;
-  }
-
-  .stat-label {
-    font-size: 0.6rem;
-    letter-spacing: 2px;
-    color: var(--white); /* was dim */
-    text-transform: uppercase;
-    margin-top: 6px;
-    opacity: 0.9;
-  }
-
-  /* ── Last updated + countdown ── */
-  .meta-bar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 14px;
-    font-size: 0.7rem;
-    color: var(--white); /* was dim */
-    letter-spacing: 1px;
-    opacity: 0.95;
-  }
-
-  .countdown {
-    color: var(--gold);
-    font-weight: 800;
-  }
-
-  /* ── Search ── */
-  .search-wrap{
-    display:flex;
-    justify-content:center;
-    margin: 10px 0 22px;
-  }
-  .search{
-    width:min(520px, 100%);
-    display:flex;
-    gap:10px;
+  .live-badge{
+    display:inline-flex;
     align-items:center;
-    padding: 10px 14px;
-    border-radius: 12px;
-    background: var(--surface);
-    border: 1px solid var(--border);
+    gap:8px;
+    margin-top:18px;
+    padding:6px 16px;
+    border:1px solid rgba(0,230,118,.3);
+    border-radius:999px;
+    font-size:.65rem;
+    letter-spacing:3px;
+    color:var(--green);
+    text-transform:uppercase;
+  }
+  .pulse{
+    width:6px;height:6px;border-radius:50%;
+    background:var(--green);
+    animation:pulse 1.5s ease infinite;
+  }
+  @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+
+  .topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin:14px 0 10px;
+    gap:12px;
+    flex-wrap:wrap;
+    font-size:.7rem;
+    color:var(--white);
+    letter-spacing:1px;
+    opacity:.95;
+  }
+  .countdown{color:var(--gold);font-weight:800}
+
+  .stats-bar{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+    margin:16px 0 14px;
+  }
+  .stat-card{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:18px;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+    transition:border-color .25s;
+  }
+  .stat-card::before{
+    content:'';
+    position:absolute;top:0;left:0;right:0;height:2px;
+    background:linear-gradient(90deg,transparent,var(--gold),transparent);
+    opacity:.5;
+  }
+  .stat-card:hover{border-color:rgba(245,200,66,.25)}
+  .stat-value{
+    font-family:'Syne',sans-serif;
+    font-size:clamp(1.2rem,2.6vw,1.9rem);
+    font-weight:800;
+    color:var(--gold);
+    line-height:1;
+  }
+  .stat-label{
+    font-size:.62rem;
+    letter-spacing:2px;
+    color:var(--white);
+    text-transform:uppercase;
+    margin-top:6px;
+    opacity:.95;
+  }
+
+  .search-wrap{display:flex;justify-content:center;margin:10px 0 14px}
+  .search-block{width:min(860px,100%)}
+  .search{
+    display:flex;gap:10px;align-items:center;
+    background:rgba(13,13,20,.85);
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:10px 10px;
   }
   .search input{
-    flex:1;
-    background: transparent;
-    border: none;
-    outline: none;
-    color: var(--white);
-    font-family: 'Space Mono', monospace;
-    font-size: 0.8rem;
-    letter-spacing: 1px;
+    flex:1;background:transparent;border:none;outline:none;
+    color:var(--white);font-family:'Space Mono',monospace;font-size:.85rem;
+    padding:8px 10px;
   }
-  .search input::placeholder{
-    color: var(--dim);
-    opacity: 0.95;
+  .search input::placeholder{color:rgba(255,255,255,.75)}
+  .btn{
+    border:1px solid rgba(245,200,66,.35);
+    background:rgba(245,200,66,.08);
+    color:var(--white);
+    padding:10px 14px;
+    border-radius:12px;
+    font-family:'Syne',sans-serif;
+    font-weight:800;
+    letter-spacing:2px;
+    font-size:.72rem;
+    text-transform:uppercase;
+    cursor:pointer;
+    transition:transform .15s, border-color .15s;
+    white-space:nowrap;
   }
-  .search .hint{
-    font-size: 0.65rem;
-    letter-spacing: 2px;
-    color: var(--dim);
-    text-transform: uppercase;
-    white-space: nowrap;
-  }
-
-  /* ── Sections ── */
-  .leaderboard, .recent { margin-bottom: 36px; }
-
-  .section-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 0.95rem;
-    letter-spacing: 2px;
-    margin-bottom: 14px;
-    color: var(--white);
-    text-transform: uppercase;
+  .btn:hover{transform:translateY(-1px);border-color:rgba(245,200,66,.55)}
+  .btn.secondary{
+    border:1px solid rgba(255,255,255,.25);
+    background:rgba(255,255,255,.08);
+    color:var(--white);
   }
 
-  /* ── Leaderboard rows ── */
-  .lb-row {
-    display: grid;
-    grid-template-columns: 48px 1fr 120px;
-    gap: 12px;
-    align-items: center;
-    padding: 12px 14px;
-    border-radius: 12px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    margin-bottom: 8px;
-    animation: slideIn 0.35s ease both;
+  .result{
+    margin-top:10px;
+    background:rgba(13,13,20,.85);
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:14px;
+    color:var(--white);
+  }
+  .result h3{
+    font-family:'Syne',sans-serif;
+    color:var(--white);
+    font-size:.9rem;
+    letter-spacing:2px;
+    text-transform:uppercase
+  }
+  .result .sub{
+    color:var(--white);
+    font-size:.65rem;
+    margin-top:6px;
+    letter-spacing:1px;
+    opacity:.95;
+  }
+  .result .kpis{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+    margin-top:12px;
+  }
+  .result .k{
+    background:rgba(5,5,8,.6);
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:12px;
+    text-align:center
+  }
+  .result .k .v{
+    font-family:'Syne',sans-serif;
+    color:var(--gold);
+    font-weight:800;
+    font-size:1.1rem
+  }
+  .result .k .l{
+    font-size:.6rem;
+    color:var(--white);
+    letter-spacing:2px;
+    text-transform:uppercase;
+    margin-top:5px;
+    opacity:.95;
   }
 
-  .lb-row.top1 { border-color: rgba(245,200,66,0.45); }
-  .lb-row.top2 { border-color: rgba(192,192,192,0.35); }
-  .lb-row.top3 { border-color: rgba(205,127,50,0.35); }
-
-  @keyframes slideIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to   { opacity: 1; transform: translateY(0); }
+  .grid{
+    display:grid;
+    grid-template-columns: 1.35fr .9fr;
+    gap:14px;
+    margin-top:8px;
+    align-items:start
   }
 
-  .rank {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: 0.95rem;
-    text-align: center;
-    color: var(--white); /* was dim */
-    opacity: 0.9;
+  .panel{
+    background:linear-gradient(180deg, rgba(245,200,66,.04), transparent 80%), var(--surface2);
+    border:1px solid var(--border);
+    border-radius:14px;
+    overflow:hidden
   }
-  .rank.r1 { color: var(--gold); font-size: 1.1rem; opacity: 1; }
-  .rank.r2 { color: #ffffff; opacity: 0.95; }
-  .rank.r3 { color: #ffffff; opacity: 0.95; }
-
-  .wallet-info { min-width: 0; }
-
-  .wallet-addr {
-    font-size: 0.8rem;
-    color: var(--white);
-    font-family: 'Space Mono', monospace;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  .panel-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:14px 14px 12px;
+    border-bottom:1px solid var(--border);
+    background:rgba(13,13,20,.65);
+    backdrop-filter:blur(6px)
   }
-
-  .win-count {
-    font-size: 0.65rem;
-    color: var(--white); /* was dim */
-    margin-top: 2px;
-    letter-spacing: 1px;
-    opacity: 0.9;
+  .panel-title{
+    font-family:'Syne',sans-serif;
+    font-size:.75rem;
+    font-weight:800;
+    letter-spacing:4px;
+    text-transform:uppercase;
+    color:var(--white);
+    display:flex;
+    align-items:center;
+    gap:8px
   }
-
-  .sol-amount {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: 1.0rem;
-    color: var(--gold);
-    text-align: right;
-    white-space: nowrap;
+  .panel-sub{
+    font-size:.62rem;
+    color:var(--white);
+    letter-spacing:1px;
+    white-space:nowrap;
+    opacity:.95;
   }
+  .panel-body{padding:10px 10px 12px}
 
-  .sol-bar-wrap {
-    height: 3px;
-    background: var(--border);
-    border-radius: 2px;
-    overflow: hidden;
-    grid-column: 1 / -1;
-    margin-top: 8px;
-    opacity: 0.85;
+  .status{ text-align:center; padding:16px 14px; color:var(--white); font-size:.75rem; letter-spacing:2px; }
+  .error{ color:var(--red); }
+
+  /* Leaderboard rows */
+  .lb-row{
+    display:grid;
+    grid-template-columns:42px 1fr 110px 86px;
+    align-items:center;
+    gap:10px;
+    padding:12px;
+    border-radius:10px;
+    border:1px solid transparent;
+    margin-bottom:6px;
+    transition:transform .18s,border-color .18s;
+    background:rgba(13,13,20,.85)
   }
+  .lb-row:hover{border-color:rgba(245,200,66,.22);transform:translateX(3px)}
+  .lb-row.top1{border-color:rgba(245,200,66,.42);background:rgba(245,200,66,.07)}
+  .lb-row.top2{border-color:rgba(192,192,192,.25);background:rgba(192,192,192,.04)}
+  .lb-row.top3{border-color:rgba(205,127,50,.25);background:rgba(205,127,50,.04)}
+  .lb-row.hit{ border-color: rgba(0,230,118,.35) !important; box-shadow: 0 0 0 1px rgba(0,230,118,.18) inset; }
 
-  .sol-bar {
-    height: 100%;
-    background: linear-gradient(90deg, var(--gold2), var(--gold));
-    border-radius: 2px;
-    transition: width 0.8s ease;
+  .rank{font-family:'Syne',sans-serif;font-weight:800;font-size:.9rem;text-align:center;color:var(--white);opacity:.95}
+  .rank.r1{color:var(--gold);font-size:1.05rem;opacity:1}
+  .rank.r2{color:var(--white);opacity:1}
+  .rank.r3{color:var(--white);opacity:1}
+
+  .wallet-addr{font-size:.75rem;color:var(--white);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .win-count{font-size:.6rem;color:var(--white);margin-top:2px;letter-spacing:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;opacity:.95}
+  .sol-amount{font-family:'Syne',sans-serif;font-weight:800;font-size:.95rem;color:var(--gold);text-align:right;white-space:nowrap}
+
+  .bar-wrap{height:3px;background:var(--border);border-radius:2px;overflow:hidden}
+  .bar{height:100%;background:linear-gradient(90deg,var(--gold2),var(--gold));border-radius:2px;transition:width .8s ease}
+
+  /* Live wins */
+  .wins{display:flex;flex-direction:column;gap:6px}
+  .win-item{
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:10px;
+    align-items:center;
+    padding:10px 12px;
+    border-radius:10px;
+    border:1px solid var(--border);
+    background:rgba(13,13,20,.85);
+    transition:border-color .18s,transform .18s
   }
+  .win-item:hover{border-color:rgba(0,230,118,.25);transform:translateX(2px)}
+  .win-wallet{color:var(--white);font-size:.72rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .win-time{color:var(--white);font-size:.6rem;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;opacity:.95}
+  .win-sol{color:var(--green);font-weight:800;font-size:.78rem;white-space:nowrap;font-family:'Syne',sans-serif}
 
-  /* ── Recent Wins ── */
-  .win-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 14px;
-    border-radius: 8px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    margin-bottom: 5px;
-    font-size: 0.75rem;
-    animation: slideIn 0.3s ease both;
-    transition: border-color 0.2s;
-  }
-
-  .win-item:hover { border-color: rgba(0,230,118,0.2); }
-
-  .win-wallet { color: var(--white); font-family: 'Space Mono', monospace; }
-  .win-sol { color: var(--green); font-weight: 800; }
-  .win-time { color: var(--white); font-size: 0.65rem; opacity: 0.9; }
-
-  /* ── Error / Loading ── */
-  .status-msg {
-    text-align: center;
-    padding: 60px 20px;
-    color: var(--white); /* was dim */
-    font-size: 0.75rem;
-    letter-spacing: 2px;
-    opacity: 0.9;
-  }
-
-  .error-msg { color: #ff5555; opacity: 1; }
-
-  /* ── Footer ── */
-  footer {
-    text-align: center;
-    padding: 24px 0 40px;
-    font-size: 0.65rem;
-    color: var(--white); /* was dim */
-    letter-spacing: 2px;
-    border-top: 1px solid var(--border);
-    opacity: 0.85;
+  footer{
+    text-align:center;
+    padding:28px 0 40px;
+    font-size:.6rem;
+    color:var(--white);
+    letter-spacing:2px;
+    border-top:1px solid var(--border);
+    margin-top:18px;
+    opacity:.95;
   }
 
-  @media (max-width: 600px) {
-    .stats-bar { grid-template-columns: 1fr 1fr; }
-    .stats-bar .stat-card:last-child { grid-column: 1 / -1; }
-    .lb-row { grid-template-columns: 36px 1fr 90px; }
-    .sol-bar-wrap { display: none; }
-    .meta-bar { flex-direction: column; gap: 8px; align-items: flex-start; }
+  @media (max-width:980px){
+    .grid{grid-template-columns:1fr}
+    .stats-bar{grid-template-columns:repeat(2,1fr)}
+    .lb-row{grid-template-columns:36px 1fr 98px}
+    .bar-wrap{display:none}
   }
 </style>
 </head>
-<body>
 
+<body>
 <!-- Loading overlay -->
-<div class="loading-overlay" id="loadingOverlay">
-  <div class="loading-box">
-    <div class="loading-title">SYNCING WINNERS</div>
-    <div class="loading-sub">Fetching latest data…</div>
-    <div class="loading-bar"><div></div></div>
-    <div class="loading-status" id="loadingStatus">Downloading JSON…</div>
-    <div class="loading-error" id="loadingError" style="display:none;"></div>
-    <button class="btn-retry" id="retryBtn" style="display:none;">Retry</button>
+<div id="loadingOverlay">
+  <div class="loadingBox">
+    <div class="loadingTitle">SYNCING WINNERS</div>
+    <div class="loadingSub">Fetching latest data…</div>
+    <div class="loadingBar"><div></div></div>
+    <div class="loadingStatus" id="loadingStatus">Downloading JSON…</div>
+    <div class="loadingError" id="loadingError"></div>
+    <button class="retryBtn" id="retryBtn">Retry</button>
   </div>
 </div>
 
 <div class="container">
-
   <header>
     <div class="logo-line">TRAMPLIN<span>.IO</span></div>
     <div class="tagline">SOL Winners Leaderboard</div>
-    <div class="live-badge"><div class="pulse"></div> Live — updates every 11 min</div>
+    <div class="live-badge"><span class="pulse"></span> Live — auto refresh</div>
   </header>
 
-  <div class="stats-bar" id="statsBar">
+  <div class="topbar">
+    <div id="lastUpdated">Updated: —</div>
+    <div>Next refresh: <span class="countdown" id="countdown">—</span></div>
+  </div>
+
+  <div class="stats-bar">
     <div class="stat-card"><div class="stat-value" id="statWins">—</div><div class="stat-label">Total Wins</div></div>
     <div class="stat-card"><div class="stat-value" id="statSol">—</div><div class="stat-label">SOL Distributed</div></div>
     <div class="stat-card"><div class="stat-value" id="statWallets">—</div><div class="stat-label">Unique Winners</div></div>
+    <div class="stat-card"><div class="stat-value" id="statInterval">—</div><div class="stat-label">Interval (min)</div></div>
   </div>
 
-  <div class="meta-bar">
-    <span id="lastUpdated">Loading...</span>
-    <span>Next refresh: <span class="countdown" id="countdown">—</span></span>
-  </div>
-
-  <!-- Search -->
   <div class="search-wrap">
-    <div class="search">
-      <input id="walletSearch" type="text" placeholder="Search your wallet in Top 100…" autocomplete="off" />
-      <div class="hint" id="searchHint">TOP 100</div>
+    <div class="search-block">
+      <div class="search">
+        <input id="walletInput" placeholder="Search wallet in Top100 (paste wallet address)…" autocomplete="off" spellcheck="false" />
+        <button class="btn" id="searchBtn">Search</button>
+        <button class="btn secondary" id="clearBtn">Clear</button>
+      </div>
+      <div id="searchResult"></div>
     </div>
   </div>
 
-  <div class="leaderboard">
-    <div class="section-title">🏆 Top 100 Leaderboard</div>
-    <div id="leaderboardList"><div class="status-msg">Loading...</div></div>
+  <div class="grid">
+    <section class="panel">
+      <div class="panel-header">
+        <div class="panel-title">🏆 Leaderboard <span style="color:var(--gold)">TOP100</span></div>
+        <div class="panel-sub" id="lbMeta">Top 100 wallets</div>
+      </div>
+      <div class="panel-body" id="leaderboardList"><div class="status">Loading…</div></div>
+    </section>
+
+    <aside class="panel">
+      <div class="panel-header">
+        <div class="panel-title">⚡ Live Wins</div>
+        <div class="panel-sub" id="winsMeta">Last 50 wins</div>
+      </div>
+      <div class="panel-body">
+        <div class="wins" id="recentList"><div class="status">Loading…</div></div>
+      </div>
+    </aside>
   </div>
 
-  <div class="recent">
-    <div class="section-title">⚡ Live Wins (50)</div>
-    <div id="recentList"><div class="status-msg">Loading...</div></div>
-  </div>
-
-  <footer>TRAMPLIN.IO · SOL GIVEAWAY TRACKER · AUTO-REFRESH 11 MIN</footer>
-
+  <footer>TRAMPLIN.IO · SOL GIVEAWAY TRACKER</footer>
 </div>
 
 <script>
 const FULL_URL = 'winners_full.json';
 const LIVE_URL = 'winners_live.json';
-const REFRESH_MS = 11 * 60 * 1000; // 11 minutes
+const REFRESH_MS = 11 * 60 * 1000;
 
 let nextRefresh = Date.now() + REFRESH_MS;
-let lastFullData = null;
+let FULL = null;
+let LIVE = null;
 
-function fmt(wallet) {
-  return wallet.slice(0, 5) + '...' + wallet.slice(-5);
+function num(x){ const n = Number(x); return Number.isFinite(n) ? n : 0; }
+function fmtWallet(w){ if(!w) return '—'; return w.length > 12 ? (w.slice(0,5)+'...'+w.slice(-5)) : w; }
+function looksLikeWallet(s){ return typeof s === 'string' && s.length >= 32 && s.length <= 60; }
+
+function showLoader(status){
+  document.getElementById('loadingOverlay').style.display = 'flex';
+  document.getElementById('loadingStatus').textContent = status || 'Loading…';
+  document.getElementById('loadingError').style.display = 'none';
+  document.getElementById('retryBtn').style.display = 'none';
 }
-
-function fmtSol(sol) {
-  return parseFloat(sol).toFixed(2) + ' SOL';
-}
-
-function showLoader(statusText) {
-  const ov = document.getElementById('loadingOverlay');
-  const st = document.getElementById('loadingStatus');
-  const err = document.getElementById('loadingError');
-  const btn = document.getElementById('retryBtn');
-  if (statusText) st.textContent = statusText;
-  err.style.display = 'none';
-  btn.style.display = 'none';
-  ov.style.display = 'flex';
-}
-
-function loaderError(message) {
-  const err = document.getElementById('loadingError');
-  const btn = document.getElementById('retryBtn');
-  err.textContent = '⚠ ' + message;
-  err.style.display = 'block';
-  btn.style.display = 'inline-flex';
-}
-
-function hideLoader() {
+function hideLoader(){
   const ov = document.getElementById('loadingOverlay');
   ov.style.opacity = '0';
-  setTimeout(() => {
-    ov.style.display = 'none';
-    ov.style.opacity = '1';
-  }, 280);
+  setTimeout(()=>{ ov.style.display='none'; ov.style.opacity='1'; }, 250);
 }
+function loaderError(msg){
+  const err = document.getElementById('loadingError');
+  err.textContent = '⚠ ' + msg;
+  err.style.display = 'block';
+  const btn = document.getElementById('retryBtn');
+  btn.style.display = 'inline-block';
+}
+document.getElementById('retryBtn').addEventListener('click', ()=> loadAll(true));
 
-document.getElementById('retryBtn').addEventListener('click', () => {
-  showLoader('Retrying…');
-  loadData(true);
-});
-
-async function loadData(useCacheBuster=false) {
-  try {
+async function loadAll(cacheBust=false){
+  try{
     showLoader('Downloading JSON…');
 
-    const suffix = useCacheBuster ? ('?t=' + Date.now()) : '';
-    const [rFull, rLive] = await Promise.all([
-      fetch(FULL_URL + suffix),
-      fetch(LIVE_URL + suffix),
+    const qs = cacheBust ? ('?t=' + Date.now()) : '';
+    const [rf, rl] = await Promise.all([
+      fetch(FULL_URL + qs, { cache:'no-store' }),
+      fetch(LIVE_URL + qs, { cache:'no-store' })
     ]);
 
-    if (!rFull.ok) throw new Error('Full HTTP ' + rFull.status);
-    if (!rLive.ok) throw new Error('Live HTTP ' + rLive.status);
+    if(!rf.ok) throw new Error('FULL HTTP ' + rf.status);
+    if(!rl.ok) throw new Error('LIVE HTTP ' + rl.status);
 
-    document.getElementById('loadingStatus').textContent = 'Parsing data…';
+    document.getElementById('loadingStatus').textContent = 'Parsing…';
 
-    const full = await rFull.json();
-    const live = await rLive.json();
+    FULL = await rf.json();
+    LIVE = await rl.json();
 
     document.getElementById('loadingStatus').textContent = 'Rendering…';
 
-    lastFullData = full;
-    renderFull(full);
-    renderLive(live);
-
+    render();
     nextRefresh = Date.now() + REFRESH_MS;
     hideLoader();
-  } catch(e) {
-    document.getElementById('leaderboardList').innerHTML =
-      '<div class="status-msg error-msg">⚠ Error loading data: ' + e.message + '</div>';
+  }catch(e){
+    document.getElementById('leaderboardList').innerHTML = `<div class="status error">⚠ ${e.message}</div>`;
+    document.getElementById('recentList').innerHTML = `<div class="status error">⚠ ${e.message}</div>`;
     loaderError(e.message);
   }
 }
 
-function renderFull(data) {
-  const stats = data.stats || {};
+function render(){
+  const stats = (FULL && FULL.stats) ? FULL.stats : {};
   document.getElementById('statWins').textContent    = (stats.total_wins || 0).toLocaleString();
-  document.getElementById('statSol').textContent     = parseFloat(stats.total_sol_distributed || 0).toFixed(2);
+  document.getElementById('statSol').textContent     = num(stats.total_sol_distributed || 0).toFixed(2);
   document.getElementById('statWallets').textContent = (stats.unique_winners || 0).toLocaleString();
+  document.getElementById('statInterval').textContent= (stats.interval_minutes || 11).toString();
   document.getElementById('lastUpdated').textContent = 'Updated: ' + (stats.last_updated || '—');
 
   // Leaderboard
-  const lb = data.leaderboard || [];
-  renderLeaderboard(lb);
-}
+  const lb = (FULL && FULL.leaderboard) ? FULL.leaderboard : [];
+  document.getElementById('lbMeta').textContent = lb.length ? `Top ${Math.min(100, lb.length)} wallets` : 'Top 100 wallets';
 
-function renderLeaderboard(lb) {
+  const maxSol = lb.length ? num(lb[0].total_sol) : 1;
   const lbEl = document.getElementById('leaderboardList');
-  const maxSol = lb.length ? lb[0].total_sol : 1;
 
-  if (!lb.length) {
-    lbEl.innerHTML = '<div class="status-msg">No data yet</div>';
-    return;
+  if(!lb.length){
+    lbEl.innerHTML = `<div class="status">No leaderboard data yet</div>`;
+  } else {
+    lbEl.innerHTML = lb.slice(0,100).map((e,i)=>{
+      const rowClass  = i===0?'top1':i===1?'top2':i===2?'top3':'';
+      const rankClass = i===0?'r1':i===1?'r2':i===2?'r3':'';
+      const pct = Math.max(0, Math.min(100, Math.round((num(e.total_sol) / maxSol) * 100)));
+      return `
+        <div class="lb-row ${rowClass}" data-wallet="${e.wallet}">
+          <div class="rank ${rankClass}">${e.rank ?? (i+1)}</div>
+          <div>
+            <div class="wallet-addr" title="${e.wallet}">${fmtWallet(e.wallet)}</div>
+            <div class="win-count">${e.win_count || 0} wins · last ${e.last_win || '—'}</div>
+          </div>
+          <div class="sol-amount">${num(e.total_sol).toFixed(2)} SOL</div>
+          <div class="bar-wrap"><div class="bar" style="width:${pct}%"></div></div>
+        </div>`;
+    }).join('');
   }
 
-  lbEl.innerHTML = lb.map((e, i) => {
-    const rowClass = i === 0 ? 'top1' : i === 1 ? 'top2' : i === 2 ? 'top3' : '';
-    const rankClass = i === 0 ? 'r1' : i === 1 ? 'r2' : i === 2 ? 'r3' : '';
-    const pct = Math.round((e.total_sol / maxSol) * 100);
-    const delay = Math.min(i * 30, 600);
-    return `
-      <div class="lb-row ${rowClass}" style="animation-delay:${delay}ms">
-        <div class="rank ${rankClass}">${e.rank}</div>
-        <div class="wallet-info">
-          <div class="wallet-addr">${fmt(e.wallet)}</div>
-          <div class="win-count">${e.win_count} win${e.win_count !== 1 ? 's' : ''} · last ${e.last_win}</div>
-        </div>
-        <div class="sol-amount">${fmtSol(e.total_sol)}</div>
-        <div class="sol-bar-wrap"><div class="sol-bar" style="width:${pct}%"></div></div>
-      </div>`;
-  }).join('');
-}
+  // Live wins
+  const wins = (LIVE && LIVE.winners) ? LIVE.winners : [];
+  document.getElementById('winsMeta').textContent = wins.length ? `Last ${wins.length} wins` : 'Last 50 wins';
 
-function renderLive(live) {
-  const wins = (live && live.winners) ? live.winners : [];
   const recentEl = document.getElementById('recentList');
-
-  if (!wins.length) {
-    recentEl.innerHTML = '<div class="status-msg">No recent wins</div>';
-    return;
+  if(!wins.length){
+    recentEl.innerHTML = `<div class="status">No recent wins yet</div>`;
+  } else {
+    recentEl.innerHTML = wins.slice(0, 50).map(w => `
+      <div class="win-item">
+        <div>
+          <div class="win-wallet" title="${w.wallet}">${fmtWallet(w.wallet)}</div>
+          <div class="win-time">${w.time_str || '—'}</div>
+        </div>
+        <div class="win-sol">+${num(w.sol).toFixed(2)} SOL</div>
+      </div>
+    `).join('');
   }
-
-  recentEl.innerHTML = wins.map((w, i) => `
-    <div class="win-item" style="animation-delay:${i * 20}ms">
-      <span class="win-wallet">${fmt(w.wallet)}</span>
-      <span class="win-sol">+${fmtSol(w.sol)}</span>
-      <span class="win-time">${w.time_str}</span>
-    </div>`).join('');
 }
 
-// Search Top 100
-document.getElementById('walletSearch').addEventListener('input', (e) => {
-  const q = (e.target.value || '').trim().toLowerCase();
-  if (!lastFullData) return;
+function clearHighlight(){
+  document.querySelectorAll('.lb-row.hit').forEach(el => el.classList.remove('hit'));
+}
 
-  const lb = lastFullData.leaderboard || [];
-  if (!q) {
-    document.getElementById('searchHint').textContent = 'TOP 100';
-    renderLeaderboard(lb);
+function searchTop100(){
+  const q = (document.getElementById('walletInput').value || '').trim();
+  const out = document.getElementById('searchResult');
+
+  if(!FULL || !FULL.leaderboard){
+    out.innerHTML = `<div class="result"><div class="sub">Data not loaded yet</div></div>`;
+    return;
+  }
+  if(!looksLikeWallet(q)){
+    out.innerHTML = `<div class="result"><h3>Invalid wallet</h3><div class="sub">Paste a full wallet address.</div></div>`;
+    clearHighlight();
     return;
   }
 
-  const filtered = lb.filter(x => (x.wallet || '').toLowerCase().includes(q));
-  document.getElementById('searchHint').textContent = filtered.length + ' FOUND';
-  renderLeaderboard(filtered);
-});
+  const row = (FULL.leaderboard || []).find(r => r.wallet === q);
+  clearHighlight();
 
-// Countdown timer
-function updateCountdown() {
+  if(!row){
+    out.innerHTML = `<div class="result"><h3>Not in Top100</h3><div class="sub">This search only checks the Top100 leaderboard.</div></div>`;
+    return;
+  }
+
+  const el = document.querySelector(`.lb-row[data-wallet="${CSS.escape(q)}"]`);
+  if(el){
+    el.classList.add('hit');
+    el.scrollIntoView({ behavior:'smooth', block:'center' });
+  }
+
+  out.innerHTML = `
+    <div class="result">
+      <h3>Found in Top100</h3>
+      <div class="sub">Wallet: ${fmtWallet(q)}</div>
+      <div class="kpis">
+        <div class="k"><div class="v">#${row.rank}</div><div class="l">Rank</div></div>
+        <div class="k"><div class="v">${row.win_count || 0}</div><div class="l">Wins</div></div>
+        <div class="k"><div class="v">${num(row.total_sol).toFixed(2)}</div><div class="l">Total SOL</div></div>
+      </div>
+      <div class="sub" style="margin-top:10px">Last win: ${row.last_win || '—'}</div>
+    </div>`;
+}
+
+function clearSearch(){
+  document.getElementById('walletInput').value = '';
+  document.getElementById('searchResult').innerHTML = '';
+  clearHighlight();
+}
+
+function tick(){
   const left = Math.max(0, Math.ceil((nextRefresh - Date.now()) / 1000));
   const m = Math.floor(left / 60);
   const s = left % 60;
-  document.getElementById('countdown').textContent = m + ':' + String(s).padStart(2, '0');
-  if (left === 0) loadData(true);
+  document.getElementById('countdown').textContent = m + ':' + String(s).padStart(2,'0');
+  if(left === 0) loadAll(true);
 }
 
-loadData(false);
-setInterval(updateCountdown, 1000);
-setInterval(() => loadData(true), REFRESH_MS);
+document.getElementById('searchBtn').addEventListener('click', searchTop100);
+document.getElementById('clearBtn').addEventListener('click', clearSearch);
+document.getElementById('walletInput').addEventListener('keydown', (e)=>{ if(e.key==='Enter') searchTop100(); });
+
+loadAll(false);
+setInterval(tick, 1000);
+setInterval(()=>loadAll(true), REFRESH_MS);
 </script>
 </body>
 </html>
-
