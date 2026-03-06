@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tramplin.io — SOL Winners Board</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:      #050508;
+    --surface: #0d0d14;
+    --border:  #1a1a2e;
+    --gold:    #f5c842;
+    --gold2:   #e8a020;
+    --green:   #00e676;
+    --dim:     #444460;
+    --text:    #c8c8e0;
+    --white:   #f0f0ff;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Space Mono', monospace;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image:
+      linear-gradient(rgba(245,200,66,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(245,200,66,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 1; }
+
+  /* ── Header ── */
+  header { padding: 48px 0 28px; text-align: center; }
+
+  .logo {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    font-weight: 800;
+    color: var(--white);
+    letter-spacing: -1px;
+    line-height: 1;
+  }
+  .logo span { color: var(--gold); }
+
+  .tagline {
+    margin-top: 8px;
+    font-size: 0.65rem;
+    letter-spacing: 4px;
+    color: var(--dim);
+    text-transform: uppercase;
+  }
+
+  .live-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 16px;
+    padding: 6px 16px;
+    border: 1px solid rgba(0,230,118,0.3);
+    border-radius: 100px;
+    font-size: 0.6rem;
+    letter-spacing: 3px;
+    color: var(--green);
+    text-transform: uppercase;
+  }
+  .pulse { width: 6px; height: 6px; border-radius: 50%; background: var(--green); animation: pulse 1.5s ease infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.7)} }
+
+  /* ── Stats ── */
+  .stats-bar { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin: 28px 0; }
+
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s;
+  }
+  .stat-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    opacity: 0.5;
+  }
+  .stat-card:hover { border-color: rgba(245,200,66,0.3); }
+
+  .stat-value {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    font-weight: 800;
+    color: var(--gold);
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .stat-label { font-size: 0.58rem; letter-spacing: 2px; color: var(--dim); text-transform: uppercase; margin-top: 6px; }
+
+  /* ── Meta bar ── */
+  .meta-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+    font-size: 0.62rem;
+    color: var(--dim);
+    letter-spacing: 1px;
+  }
+  .countdown { color: var(--gold); font-weight: 700; }
+
+  /* ── Section title ── */
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--dim);
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* ── Leaderboard header ── */
+  .lb-header {
+    display: grid;
+    grid-template-columns: 44px 1fr 110px 100px 90px;
+    gap: 10px;
+    padding: 6px 16px;
+    font-size: 0.55rem;
+    letter-spacing: 2px;
+    color: var(--dim);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .lb-header .col-right { text-align: right; }
+
+  /* ── Leaderboard rows ── */
+  .lb-row {
+    display: grid;
+    grid-template-columns: 44px 1fr 110px 100px 90px;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    border-radius: 10px;
+    border: 1px solid transparent;
+    margin-bottom: 5px;
+    background: var(--surface);
+    opacity: 0;
+    transform: translateX(-24px);
+    transition: opacity 0.45s ease, transform 0.45s ease, border-color 0.2s;
+  }
+  .lb-row.visible { opacity: 1; transform: translateX(0); }
+  .lb-row:hover { border-color: rgba(245,200,66,0.2); transform: translateX(4px); }
+  .lb-row.top1 { border-color: rgba(245,200,66,0.35); background: rgba(245,200,66,0.06); }
+  .lb-row.top2 { border-color: rgba(192,192,192,0.25); background: rgba(192,192,192,0.03); }
+  .lb-row.top3 { border-color: rgba(205,127,50,0.25); background: rgba(205,127,50,0.03); }
+
+  .rank { font-family: 'Syne',sans-serif; font-weight: 800; font-size: 0.9rem; text-align: center; color: var(--dim); }
+  .rank.r1 { color: var(--gold); font-size: 1.1rem; }
+  .rank.r2 { color: #c0c0c0; }
+  .rank.r3 { color: #cd7f32; }
+
+  .wallet-info { min-width: 0; }
+  .wallet-addr { font-size: 0.72rem; color: var(--white); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .win-count { font-size: 0.58rem; color: var(--dim); margin-top: 2px; letter-spacing: 1px; }
+
+  .col-sol { text-align: right; }
+  .sol-amount { font-family: 'Syne',sans-serif; font-weight: 800; font-size: 0.9rem; color: var(--gold); }
+
+  .col-staked { text-align: right; }
+  .staked-amount { font-family: 'Syne',sans-serif; font-weight: 700; font-size: 0.85rem; color: var(--green); }
+  .staked-none { font-size: 0.7rem; color: var(--dim); }
+
+  .col-bar { }
+  .sol-bar-wrap { height: 3px; background: var(--border); border-radius: 2px; overflow: hidden; margin-top: 2px; }
+  .sol-bar { height: 100%; background: linear-gradient(90deg, var(--gold2), var(--gold)); border-radius: 2px; transition: width 1s ease; }
+
+  /* ── Recent wins ── */
+  .recent { margin: 32px 0 48px; }
+
+  .win-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 9px 14px;
+    border-radius: 8px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    margin-bottom: 5px;
+    font-size: 0.68rem;
+    opacity: 0;
+    transform: translateX(-12px);
+    transition: opacity 0.35s ease, transform 0.35s ease, border-color 0.2s;
+  }
+  .win-item.visible { opacity: 1; transform: translateX(0); }
+  .win-item:hover { border-color: rgba(0,230,118,0.2); }
+  .win-wallet { color: var(--text); }
+  .win-sol { color: var(--green); font-weight: 700; }
+  .win-time { color: var(--dim); font-size: 0.58rem; }
+
+  /* ── Loading skeleton ── */
+  .skel-row { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
+  .skel {
+    background: linear-gradient(90deg, var(--border) 25%, #22223a 50%, var(--border) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    border-radius: 4px;
+  }
+  @keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+  .skel-circle { width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0; }
+  .skel-line { height: 8px; }
+  .skel-lines { flex: 1; display: flex; flex-direction: column; gap: 5px; }
+
+  /* ── Footer ── */
+  footer {
+    text-align: center;
+    padding: 20px 0 40px;
+    font-size: 0.58rem;
+    color: var(--dim);
+    letter-spacing: 2px;
+    border-top: 1px solid var(--border);
+  }
+
+  @media (max-width: 640px) {
+    .stats-bar { grid-template-columns: 1fr 1fr; }
+    .stats-bar .stat-card:last-child { grid-column: 1/-1; }
+    .lb-header, .lb-row { grid-template-columns: 36px 1fr 85px 80px; }
+    .lb-header .col-bar, .lb-row .col-bar { display: none; }
+  }
+  @media (max-width: 420px) {
+    .lb-header, .lb-row { grid-template-columns: 30px 1fr 75px; }
+    .lb-header .col-staked, .lb-row .col-staked,
+    .lb-header .col-bar, .lb-row .col-bar { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div class="logo">TRAMPLIN<span>.IO</span></div>
+    <div class="tagline">Community SOL Winners Board</div>
+    <div class="live-badge"><div class="pulse"></div> Updates every hour</div>
+  </header>
+
+  <div class="stats-bar">
+    <div class="stat-card"><div class="stat-value" id="statWins">0</div><div class="stat-label">Total Wins</div></div>
+    <div class="stat-card"><div class="stat-value" id="statSol">0</div><div class="stat-label">SOL Distributed</div></div>
+    <div class="stat-card"><div class="stat-value" id="statWallets">0</div><div class="stat-label">Unique Winners</div></div>
+  </div>
+
+  <div class="meta-bar">
+    <span id="lastUpdated">Loading...</span>
+    <span>Next update: <span class="countdown" id="countdown">—</span></span>
+  </div>
+
+  <div class="leaderboard" style="margin-bottom:48px">
+    <div class="section-title">🏆 Top 100 Leaderboard</div>
+    <div class="lb-header">
+      <div></div>
+      <div>Wallet</div>
+      <div class="col-right">Won</div>
+      <div class="col-right">Staked</div>
+      <div class="col-right">Wins</div>
+    </div>
+    <div id="leaderboardList">
+      <div class="skel-row"><div class="skel skel-circle"></div><div class="skel-lines"><div class="skel skel-line" style="width:80%"></div><div class="skel skel-line" style="width:50%"></div></div></div>
+      <div class="skel-row"><div class="skel skel-circle"></div><div class="skel-lines"><div class="skel skel-line" style="width:70%"></div><div class="skel skel-line" style="width:45%"></div></div></div>
+      <div class="skel-row"><div class="skel skel-circle"></div><div class="skel-lines"><div class="skel skel-line" style="width:90%"></div><div class="skel skel-line" style="width:55%"></div></div></div>
+    </div>
+  </div>
+
+  <div class="recent">
+    <div class="section-title">⚡ Recent Wins</div>
+    <div id="recentList"></div>
+  </div>
+
+  <footer>TRAMPLIN.IO COMMUNITY LEADERBOARD · NOT AFFILIATED WITH TRAMPLIN.IO · DATA FROM PUBLIC BLOCKCHAIN</footer>
+
+</div>
+<script>
+const WINNERS_URL = 'winners.json';
+const STAKING_URL = 'staking.json';
+const REFRESH_MS  = 60 * 60 * 1000; // 1 hour
+
+let nextRefresh = Date.now() + REFRESH_MS;
+let stakingData = {};
+
+function fmt(w) { return w.slice(0,5) + '...' + w.slice(-5); }
+function fmtSol(s) { return parseFloat(s).toFixed(2) + ' SOL'; }
+
+// Counter animation
+function animateCounter(el, target, duration, decimals) {
+  const start = Date.now();
+  const from  = 0;
+  function step() {
+    const p   = Math.min((Date.now() - start) / duration, 1);
+    const ease = 1 - Math.pow(1 - p, 3);
+    const val  = ease * target;
+    el.textContent = decimals ? val.toFixed(decimals) : Math.floor(val).toLocaleString();
+    if (p < 1) requestAnimationFrame(step);
+    else el.textContent = decimals ? target.toFixed(decimals) : target.toLocaleString();
+  }
+  requestAnimationFrame(step);
+}
+
+async function loadStaking() {
+  try {
+    const r = await fetch(STAKING_URL + '?t=' + Date.now());
+    if (!r.ok) return;
+    const data = await r.json();
+    stakingData = data.staking || {};
+  } catch(e) {
+    stakingData = {};
+  }
+}
+
+async function loadData() {
+  try {
+    await loadStaking();
+    const r = await fetch(WINNERS_URL + '?t=' + Date.now());
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    const data = await r.json();
+    render(data);
+    nextRefresh = Date.now() + REFRESH_MS;
+  } catch(e) {
+    document.getElementById('leaderboardList').innerHTML =
+      '<div style="text-align:center;padding:40px;color:#ff5555;font-size:0.7rem">Error loading data: ' + e.message + '</div>';
+  }
+}
+
+function render(data) {
+  const stats = data.stats || {};
+
+  // Counter animations
+  animateCounter(document.getElementById('statWins'),    stats.total_wins || 0,            1800);
+  animateCounter(document.getElementById('statSol'),     stats.total_sol_distributed || 0, 2000, 2);
+  animateCounter(document.getElementById('statWallets'), stats.unique_winners || 0,         1600);
+
+  document.getElementById('lastUpdated').textContent = 'Updated: ' + (stats.last_updated || '—');
+
+  // Leaderboard
+  const lb    = data.leaderboard || [];
+  const maxSol = lb.length ? lb[0].total_sol : 1;
+  const lbEl  = document.getElementById('leaderboardList');
+
+  lbEl.innerHTML = lb.map((e, i) => {
+    const rowClass    = i === 0 ? 'top1' : i === 1 ? 'top2' : i === 2 ? 'top3' : '';
+    const rankClass   = i === 0 ? 'r1'   : i === 1 ? 'r2'   : i === 2 ? 'r3'   : '';
+    const pct         = Math.round((e.total_sol / maxSol) * 100);
+    const stakedVal   = stakingData[e.wallet];
+    const stakedHtml  = stakedVal
+      ? '<span class="staked-amount">' + fmtSol(stakedVal) + '</span>'
+      : '<span class="staked-none">—</span>';
+
+    return '<div class="lb-row ' + rowClass + '" data-delay="' + (i * 35) + '">' +
+      '<div class="rank ' + rankClass + '">' + e.rank + '</div>' +
+      '<div class="wallet-info">' +
+        '<div class="wallet-addr">' + fmt(e.wallet) + '</div>' +
+        '<div class="win-count">' + e.win_count + ' win' + (e.win_count !== 1 ? 's' : '') + ' · last ' + e.last_win + '</div>' +
+      '</div>' +
+      '<div class="col-sol"><span class="sol-amount">' + fmtSol(e.total_sol) + '</span></div>' +
+      '<div class="col-staked">' + stakedHtml + '</div>' +
+      '<div class="col-bar"><div class="sol-bar-wrap"><div class="sol-bar" style="width:0%" data-pct="' + pct + '"></div></div></div>' +
+    '</div>';
+  }).join('');
+
+  // Stagger reveal leaderboard rows
+  const rows = lbEl.querySelectorAll('.lb-row');
+  rows.forEach(row => {
+    const delay = parseInt(row.dataset.delay || 0);
+    setTimeout(() => {
+      row.classList.add('visible');
+      const bar = row.querySelector('.sol-bar');
+      if (bar) bar.style.width = bar.dataset.pct + '%';
+    }, delay);
+  });
+
+  // Recent wins
+  const wins   = (data.winners || []).slice(0, 30);
+  const recentEl = document.getElementById('recentList');
+  recentEl.innerHTML = wins.map((w, i) =>
+    '<div class="win-item" data-delay="' + (i * 30) + '">' +
+      '<span class="win-wallet">' + fmt(w.wallet) + '</span>' +
+      '<span class="win-sol">+' + fmtSol(w.sol) + '</span>' +
+      '<span class="win-time">' + w.time_str + '</span>' +
+    '</div>'
+  ).join('');
+
+  recentEl.querySelectorAll('.win-item').forEach(item => {
+    const delay = parseInt(item.dataset.delay || 0);
+    setTimeout(() => item.classList.add('visible'), 1200 + delay);
+  });
+}
+
+function updateCountdown() {
+  const left = Math.max(0, Math.ceil((nextRefresh - Date.now()) / 1000));
+  const m = Math.floor(left / 60);
+  const s = left % 60;
+  document.getElementById('countdown').textContent = m + ':' + String(s).padStart(2, '0');
+  if (left === 0) loadData();
+}
+
+loadData();
+setInterval(updateCountdown, 1000);
+setInterval(loadData, REFRESH_MS);
+</script>
+</body>
+</html>
