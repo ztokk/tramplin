@@ -1,11 +1,641 @@
 {
   "stats": {
-    "total_wins": 7771,
-    "total_sol_distributed": 892.198,
-    "unique_winners": 5860,
-    "last_updated": "2026-03-16 19:50 UTC"
+    "total_wins": 7861,
+    "total_sol_distributed": 902.671,
+    "unique_winners": 5935,
+    "last_updated": "2026-03-17 07:45 UTC"
   },
   "winners": [
+    {
+      "wallet": "2GkwTTYYHns8dfuTCyv3SFJVzowvqJYHmNrWgsjpgH7J",
+      "sol": 0.1011,
+      "timestamp": 1773733249,
+      "signature": "4nyrQUquwdCwgWnE8NUYyz8ngCwuLq7gV7mS5HGRoYLRHmshG8y6LakB5o2tQcz1HHPxk6GpxmBJVNkeGGDt33j3",
+      "time_str": "2026-03-17 07:40 UTC"
+    },
+    {
+      "wallet": "GEcFmNfhZHMj8HP4FuyUFarFqgtgToDFYDqaMYEe2vpY",
+      "sol": 0.1011,
+      "timestamp": 1773732669,
+      "signature": "64gUYmhjL9MeK6hAFcg2sBgG8SfnBP6Ky4gEJfB7xiwbwk1qrA19i176FhjoDPqY3aXQXbBdGyh21JEEipDs2Xk9",
+      "time_str": "2026-03-17 07:31 UTC"
+    },
+    {
+      "wallet": "AxH39M1fvHct8imWC173ttAfPQUyLwZ7yAkEhwBqaGkP",
+      "sol": 0.1011,
+      "timestamp": 1773732081,
+      "signature": "2z2Teg7UfJV67MQBJF4dGTSfVdqn4yqNS1evusUGhXKLjxdJ5HQCCXPozqaRZ7DeDtRSr8X3RHe7ePgQC5TFdizW",
+      "time_str": "2026-03-17 07:21 UTC"
+    },
+    {
+      "wallet": "6PwizUMdnSTbVhrWcHKHYCHET5K8r6rQxQX3rS7HXfK2",
+      "sol": 0.1011,
+      "timestamp": 1773731488,
+      "signature": "45QVZQ6CHgweJit1n2ZUBjCMtwy7TNhdekZvtLaPYZrSay39FNTfGoT15fAdHoSi5dsutwMDD6EpPEMJzNy1AmfN",
+      "time_str": "2026-03-17 07:11 UTC"
+    },
+    {
+      "wallet": "2j42tnRh7sXxqy7mizxzLg8sNJgpFyZtEHtXuc9vCdUw",
+      "sol": 0.1011,
+      "timestamp": 1773730903,
+      "signature": "265gufBXKhzMNCnyTQPJonjkZtEBj2xALnuZ27Dxb9L38peePMYwNix4ycvnP27yo2fnZpCSGAJPBqpDBiJvTFfn",
+      "time_str": "2026-03-17 07:01 UTC"
+    },
+    {
+      "wallet": "H16HyPuznYzapwnvYtnn5mipmD2oZhNyxUWY1zaeU4Eh",
+      "sol": 0.1011,
+      "timestamp": 1773730312,
+      "signature": "4yr2TwNynRuDZWbVhv1cRJ2p9rWXycMSrpDSpv1c3XBavkvDfmsHDjsY7FpFCXHRVjvNuJCpBsWKPBNawJj1NWUF",
+      "time_str": "2026-03-17 06:51 UTC"
+    },
+    {
+      "wallet": "7hpAdeorBC38Zch184WSG36vCLyzDJ6EF5WtvVBiLx6X",
+      "sol": 0.1011,
+      "timestamp": 1773729727,
+      "signature": "3q7mMvJhPxSkSqniJrhcd2ggQz9fkNapeS73AV88HcJnm8fDcaNpWwwNTzndzjQ6NX81pzCtu7uusA7G9vvRb3Vx",
+      "time_str": "2026-03-17 06:42 UTC"
+    },
+    {
+      "wallet": "BMckEfmSouw3jnAbc2F4gD6e6HDsFcyN9R5cgRzqRrRn",
+      "sol": 0.1011,
+      "timestamp": 1773729138,
+      "signature": "3zKDjC7vKXN7nfNN4KHoRS5uccqVYDAYkxg3ktmp387rGgEnxGuVfiN4jR1hHyWk22s1Ht5hciWgwnaE4ZcUqTDV",
+      "time_str": "2026-03-17 06:32 UTC"
+    },
+    {
+      "wallet": "HSQ3dKU98E71meJHqiJ5kktnMGoyBEgJeGt7gcBrUgLY",
+      "sol": 0.1011,
+      "timestamp": 1773728550,
+      "signature": "4VWgKdhWwtQpvv9qhC1ok4LwZhLm8Z6vsJcYZXQayMrVxdt67feQ8GSy8sKXPn3gLXDtLoeKZQYRdWnS4Drr7ZVP",
+      "time_str": "2026-03-17 06:22 UTC"
+    },
+    {
+      "wallet": "4gUwASEYqHhfEzrUh8Kgq3sKL4cpm2mQMRenA7fw9Qc1",
+      "sol": 0.1011,
+      "timestamp": 1773727964,
+      "signature": "4C4vdSqTU9tqcAhokacNXDFgezPTM2MS5J4d7Xzy2KiUk2vMh28kVpGg6x7PNhM7Xespgb2vCjqVfKS2jHEmyHPe",
+      "time_str": "2026-03-17 06:12 UTC"
+    },
+    {
+      "wallet": "wnUQH5jNeyZcfw5HJxXg3DAXbunCq6bitAkqxJzSpjG",
+      "sol": 0.1011,
+      "timestamp": 1773727374,
+      "signature": "2sTjxuSKw81TNkRhtLnmTZQDFqZaCqQYJMv943u14R4HRVakJo1ykhto43CTpavcf3YSWqTjgPPL5W1sZoZZfCPC",
+      "time_str": "2026-03-17 06:02 UTC"
+    },
+    {
+      "wallet": "5Px3U5CXjZpdXkgtXxvA1fqkKSTmMDd92XpzGKz3hjtE",
+      "sol": 0.0972,
+      "timestamp": 1773727276,
+      "signature": "5ScAtDK6NHua1Bz5BL8PKuwgxST2SJotVekaVfnNhxAc6q3RGHAdkWC9jGpVy442ZhivP3tNxpnPqkW8AeXTdou2",
+      "time_str": "2026-03-17 06:01 UTC"
+    },
+    {
+      "wallet": "AjiBB17pnqhLDDFBfHUToLv3QvnJsVFFGgioMpf77dA5",
+      "sol": 0.1011,
+      "timestamp": 1773726788,
+      "signature": "2PvLHY1hqkiR56RaAKwrCKjjukHzfUZd6MMcbEgmv2MGZnEQaRx2q6LSndoGre9UhmjZ1d5aTe7cXtjtPLc2aU2f",
+      "time_str": "2026-03-17 05:53 UTC"
+    },
+    {
+      "wallet": "7sFbr9rCWivEbq7viUrGncdHQfXeJAohknJpqud21hVz",
+      "sol": 0.0972,
+      "timestamp": 1773726369,
+      "signature": "2vguxZaxM2DDscTJgm48CTNJG8KVQQXoTQ97tgyaNBH5x8zFRBYkX24N5TqvsGTe7tLg7uWoHxjSGBmRBbq8GHj4",
+      "time_str": "2026-03-17 05:46 UTC"
+    },
+    {
+      "wallet": "7sFbr9rCWivEbq7viUrGncdHQfXeJAohknJpqud21hVz",
+      "sol": 0.1944,
+      "timestamp": 1773726367,
+      "signature": "3WiCdyR7SR432ogwKZp6nyf3jV1jEWnEaytxQMNjWYLjR8jYUmWrCN6DeHMCtFZjKJUmmjmBNxXn79ayrGyqUXi7",
+      "time_str": "2026-03-17 05:46 UTC"
+    },
+    {
+      "wallet": "7sFbr9rCWivEbq7viUrGncdHQfXeJAohknJpqud21hVz",
+      "sol": 0.1944,
+      "timestamp": 1773726364,
+      "signature": "3Cw1tCqtQBYyAg6XmMKP1AQWMT1N6H3xFVqCKHurTBrw2h2hu8aSxZAJvTG7BnXPja5aKobzA1xjQrgdoQk7vrSt",
+      "time_str": "2026-03-17 05:46 UTC"
+    },
+    {
+      "wallet": "2YkSRnhB9coYGde3nmFz32frfqWQbsM6TFbxrBcM2Q5F",
+      "sol": 0.1011,
+      "timestamp": 1773726204,
+      "signature": "cNTnx1fTa59Fmk6EYo93hXMJwuvFEQDrffXYQhxvNsrUv8r4LQAqH8Wmkpmie8RbNT6r8jBd9AnEL9MPA2KcvYR",
+      "time_str": "2026-03-17 05:43 UTC"
+    },
+    {
+      "wallet": "9UPVdzrkMM5v1E5bnE4p9uqwnUJarh4f4LQy1yaoQDDD",
+      "sol": 0.1011,
+      "timestamp": 1773725616,
+      "signature": "4XsXEwaZVFmvR2kjsgjYUekHUtn1pyzu1xXhHYn5n4b1C5n6kqbNxkN9LTew6Ke4fAe339pYD45jcgAbyqF5EAyB",
+      "time_str": "2026-03-17 05:33 UTC"
+    },
+    {
+      "wallet": "2hss7wDh2GVGZLw3aKjm66L8md7mpiffiwpCYCGuLbGp",
+      "sol": 0.1011,
+      "timestamp": 1773725023,
+      "signature": "3TA1KEbh5pRgxCXRKHVsYu9da7BHTqsfK46jyGzjjDPWZLrnUzisNnibHtDszRYC49VCbKbLxf2yu4WYKUiYSe3f",
+      "time_str": "2026-03-17 05:23 UTC"
+    },
+    {
+      "wallet": "xmVWDwf5caoKJz8Mhj3X8F5NUypGAvKXdJKFaebRW2q",
+      "sol": 0.1011,
+      "timestamp": 1773724437,
+      "signature": "32mGAkbUEiW89zTzn7VEGzoioYBb8VHopRJ1bApGyWBsbh5zvtymPSXaPSRZEix2wC129V2airuibUP66DbhBYXC",
+      "time_str": "2026-03-17 05:13 UTC"
+    },
+    {
+      "wallet": "82FNeWRbtmCcLcTz56RQH7UcDrpq7G9wn8THfrncvMQ",
+      "sol": 0.1011,
+      "timestamp": 1773723847,
+      "signature": "53bkLTYCE3VqDMQpEe421qaFyykHGUV7GBnYFJpcXP9uShmf7aj72DK4X6AskYgHJF8ztvFZJmBKQVfjapQ5M8cV",
+      "time_str": "2026-03-17 05:04 UTC"
+    },
+    {
+      "wallet": "DjrbQX1rKbnisc84SdMV2UZCWTwZiRmPzFZccDvw6F49",
+      "sol": 0.1011,
+      "timestamp": 1773723589,
+      "signature": "4LtCrNDMYS7pgZWzdyUCphtEzoDbFj4iMMgXYyNnHkMGR9rdvb5Zy33rYZHv3qqZ87vNbJtu68U5YHN7B8WryYv1",
+      "time_str": "2026-03-17 04:59 UTC"
+    },
+    {
+      "wallet": "8YCuzLBpPD4nRnppjYvCn47uSGUqQVHehEgiiPRDVHqv",
+      "sol": 0.1945,
+      "timestamp": 1773723082,
+      "signature": "RF65CNnFXSV9fy3nv2oJAhu2giUqidKaRN58ipN1cnUwNRmqFjZxaYcpYZYkvLtTmaoR72bjMuaEkAnemRLSjRJ",
+      "time_str": "2026-03-17 04:51 UTC"
+    },
+    {
+      "wallet": "6TyoqzQYaymhHaV5oM9tN7jiqXq5nGTTuVE3CkcqhPgH",
+      "sol": 0.1011,
+      "timestamp": 1773722669,
+      "signature": "pYkAUP7GX5BDMLHZEth5uiviubbNxbGx6nw9QeK1evTV3XAoUKazzNuzLhswE8H5bysbyPXdpbMicHzgvQVFuWT",
+      "time_str": "2026-03-17 04:44 UTC"
+    },
+    {
+      "wallet": "AMjEoPcAnA9AoG2Vut7oGt1oD86Bumi7bBixesf6hgPR",
+      "sol": 0.1011,
+      "timestamp": 1773722075,
+      "signature": "3xzcJCBpdEXnD3eSZoNjay3Pu53q9Z49ahmuCMXrwGjXAKHtXoSngU1KUiC1WTh21c5brrrQt72oFtaz6SQM3ngp",
+      "time_str": "2026-03-17 04:34 UTC"
+    },
+    {
+      "wallet": "6wTM74B7Jj9JV8oHrjUH8C8ppC3dXCZRNDSc1VftMpZc",
+      "sol": 0.1011,
+      "timestamp": 1773721492,
+      "signature": "UGwA3CagUrxKqcxRF3TgC33saAyzpxxfgsEBBaGigFAN8gZJSHXonaeTCv3276YuCcTbqsWzzLVYfEPjrfcCdqo",
+      "time_str": "2026-03-17 04:24 UTC"
+    },
+    {
+      "wallet": "8KxpZ6R8uUhqCwW4PMSqZL327EJS417cH25Ur9c9iw2E",
+      "sol": 0.1011,
+      "timestamp": 1773720899,
+      "signature": "3GAVZKvKNnpztWvb8M89Ax2ZagpZh3LnpXXC5v4CD2nenEG5ZvX4S3FL4qoBdXJQF9caSjYgHeGgizC4CoEvG4kT",
+      "time_str": "2026-03-17 04:14 UTC"
+    },
+    {
+      "wallet": "DxravLJxZbGkMtTKkG59aRGXZZamdvZUkaRZgEFCqSp9",
+      "sol": 0.1011,
+      "timestamp": 1773720312,
+      "signature": "1xrGsiBzxSV8gK6r9MGxPtECFfrjPRSCAe1rEBaEGsyZqBJimnNpfbS37fNGW64F1YKg1jMn1KY7fNc5a2vNUk9",
+      "time_str": "2026-03-17 04:05 UTC"
+    },
+    {
+      "wallet": "Ht67Zb4EAycNrmQRCex1ESRM9jWzuUZcVhuLXAm6WDF9",
+      "sol": 0.1011,
+      "timestamp": 1773719719,
+      "signature": "4y1HGz6a9UETnkN6qfFTZJLBQ9EnqcjiWo4KQnedcYUESzdEDUHgDpMreKaS5rtbnWUHA9jZ2YzAHSjKTkP1MJ16",
+      "time_str": "2026-03-17 03:55 UTC"
+    },
+    {
+      "wallet": "EsTQhbcFVTTnySCpE336JoRz8DYxgNuCMGX5nMjSfCr2",
+      "sol": 0.1011,
+      "timestamp": 1773719132,
+      "signature": "2u89ihRc4KMtLxxSwbQrnSt7mEnLsSzGSB98pbG4tdY9QR9q2d93E7J3SDqMuTHei9E23Q4iYsLcoZHVquPfo9t6",
+      "time_str": "2026-03-17 03:45 UTC"
+    },
+    {
+      "wallet": "1cAH2jjCRyjEgtD5B7ubS53uHpcjfLVwBUkeadUSbhi",
+      "sol": 0.1011,
+      "timestamp": 1773718539,
+      "signature": "53QkKB7nExsXZJJ6BVpzQtrYwymN5V5DsGVJZ7SCfjugcHsHZeXZ3v7czwY7dwMxwCmRsNsiDTAwYJhThJsAS2Nc",
+      "time_str": "2026-03-17 03:35 UTC"
+    },
+    {
+      "wallet": "3WTJL7NQH6E1vBafXeKyLxai9nQz62kq5NCAYFcRJRXw",
+      "sol": 0.1011,
+      "timestamp": 1773717943,
+      "signature": "58XScoYCiKysWrQxjU6NYJc3svXYa6oQRTdHRJnYWs3jvkDkiKgtJ3tQSgpKs2qgvG2RGAhd2xKhB8s9qbFgQN8s",
+      "time_str": "2026-03-17 03:25 UTC"
+    },
+    {
+      "wallet": "7VfKz2QcGzyHJbniMEp2wZ769QUjJfrfFq6ZLxdQ7YJr",
+      "sol": 0.1011,
+      "timestamp": 1773717354,
+      "signature": "3eCYT31uBf965KoaeBXPpwci1zB53ehFrZVdbvHq8MmHPr1B3JAJWWpn3QuT6ESVuAf2SXsCZid7ZwK4BeuxnBBZ",
+      "time_str": "2026-03-17 03:15 UTC"
+    },
+    {
+      "wallet": "F1kuw8Ev3oupT59HRxSwZjtizeWpkGfGBh4mDduQ2mCZ",
+      "sol": 0.1011,
+      "timestamp": 1773716767,
+      "signature": "5RaouR1mq8eCyMvMBR4WrcYveqkGNmjausZ2mFT2KPKs4eoh6UBgQyKqJUfU5b1s8aTK4hWAAb2GXs39p8H77Mxt",
+      "time_str": "2026-03-17 03:06 UTC"
+    },
+    {
+      "wallet": "CuRbvtBcbWv2pRkERJpRUUoaJ3YjLXZjqrJSXBrAMkjH",
+      "sol": 0.1011,
+      "timestamp": 1773716173,
+      "signature": "3UARPMVVE8BWK4PMob4LkE2DZVNoueTAUqRsEzAdFm6YcDV9fUETeLRTYCL2ut6cB53jE8F9chgyXPRjvoAvGKKc",
+      "time_str": "2026-03-17 02:56 UTC"
+    },
+    {
+      "wallet": "2Utwk438tKoMnr4dgaAwSVrcZyYSk19zfDKCUXiy2GKM",
+      "sol": 0.1011,
+      "timestamp": 1773715584,
+      "signature": "2Di8PciRHd4UH86Pbmmk8k9poYpa6NgeHNCNUHs7UpUPSim18cLdSuUR5EZkZ3CuyVGJfGgLw9zgCJvjbL5Aa4MV",
+      "time_str": "2026-03-17 02:46 UTC"
+    },
+    {
+      "wallet": "5qPz1i2SBgFE5jnxEZQrwxxMX7FtTdxkkFptiVZYX5Dg",
+      "sol": 0.1011,
+      "timestamp": 1773714987,
+      "signature": "5jyYJF9duuRgWf6C1saj49mA3cWRmLYiSJeDCgmyvhsrRV4a7S2irgqvm4BtR3gs1B3SEADhTJA8Yhs13NAnn12J",
+      "time_str": "2026-03-17 02:36 UTC"
+    },
+    {
+      "wallet": "9YsWRBBduFmXpGb4FZPRo3XeVb6KdCds6nrf2tFgrqhi",
+      "sol": 0.1011,
+      "timestamp": 1773714399,
+      "signature": "21tqkZGWpYmThNcnzSepCsyuyBNKKSTbXJYiyjAzMYDDzc3whoarBsQqDHMJNEjjRziVdJfdqUM4uEa1Ht7aaVFo",
+      "time_str": "2026-03-17 02:26 UTC"
+    },
+    {
+      "wallet": "GRW6p8CWPkzHBhVVE3JbHUaGycY7GG5fQ49ZJ4qbWD1G",
+      "sol": 0.1011,
+      "timestamp": 1773713805,
+      "signature": "4Kis1U6TEt2TFiDSQsBGViHfPNHy17fV4e5RNLjcJfjuqqQsiFSHzeZEDffYuJEvQriTSYmEsBdktRkBsLjwfQBw",
+      "time_str": "2026-03-17 02:16 UTC"
+    },
+    {
+      "wallet": "AffWtQ6MfzjEowJiuG1WwZ62LsYSQ4dZRa1riWcv6yW5",
+      "sol": 0.1011,
+      "timestamp": 1773713208,
+      "signature": "8VMsdQukWcmgznhAKdMVhWGz1bVi6Nz6S4FBAXcu8eFbunKfQkCETp2twugKh1hDzgszCoPrm96p5TSBNcgS5cQ",
+      "time_str": "2026-03-17 02:06 UTC"
+    },
+    {
+      "wallet": "7vvLnp8qutx7Bi8zcUdxmSYu66Me15zS8dLhDM5Mah8W",
+      "sol": 0.1011,
+      "timestamp": 1773712615,
+      "signature": "5DfE2Zcr1u2i2opY4XLrGTtgcbGsD2ouJtKWpQhGh7HazzUJXgW1PzGVCC69YuEaNZEmPGFEVL8EvyeTkVd1zCCN",
+      "time_str": "2026-03-17 01:56 UTC"
+    },
+    {
+      "wallet": "6xoqQ1NqQiq3EUYB1AyPNzvVCwXAXb6D6xcjvNGVRayx",
+      "sol": 0.1011,
+      "timestamp": 1773712028,
+      "signature": "2R686CA5AjFAMV4xWAv2Spce3s7muc7wyqY77N3WL7uK4Bju9aeFMfgQWZiznxrrf3BAvXwgqJMp1g5GTpevGTbc",
+      "time_str": "2026-03-17 01:47 UTC"
+    },
+    {
+      "wallet": "FRU766DDtUycMrkR1RYU3Gb3bAhQRreUzqDpkJeW5PyQ",
+      "sol": 0.1011,
+      "timestamp": 1773711440,
+      "signature": "3osiCxpUvF32K6nVC5GFjVzSUj5CXwiyhg3ia9iGaXfmWjz4yeoEj5u5sqqvMwNZhurX32xSXBg2qctHts1eFD97",
+      "time_str": "2026-03-17 01:37 UTC"
+    },
+    {
+      "wallet": "mKsWPVGjz86egXVp5WG2jqWZm9o8oMvijhY1vRoBJVk",
+      "sol": 0.1011,
+      "timestamp": 1773710851,
+      "signature": "2AqzWfqDe3f9B2nPjdwMUDjZDAposw37C2VRaLV9GBVMFSjdYHBzLYxxPyMrv8B7rNfXuUSMdNhRzL5UtYCw4Z7o",
+      "time_str": "2026-03-17 01:27 UTC"
+    },
+    {
+      "wallet": "5t3zerCZ4RwNtPixG7UT8aB6Yc8Q9BXYNDvidq6yUHsB",
+      "sol": 0.1011,
+      "timestamp": 1773710263,
+      "signature": "4c8h6KEQSyxeukNTF8PEehMi8e9donXUB16x2ntN19aQmThcy6FZK6pzJRYPjZDfmVu7om6QQ2tB2yHU4dmzYDTH",
+      "time_str": "2026-03-17 01:17 UTC"
+    },
+    {
+      "wallet": "9UyrgT1Ed9xU6zUPNvxNVs96mvwAcdWHwjgNyf7URYS6",
+      "sol": 0.1011,
+      "timestamp": 1773709675,
+      "signature": "3a2bodvy7taFjUqx5dPd5Fiexeqg4pY1738jn2pDreCS1YdffKy3kh8ftsv4LXJfvMqZwpW35wtGnQzbikFoDyo3",
+      "time_str": "2026-03-17 01:07 UTC"
+    },
+    {
+      "wallet": "6GqAr55TFkno1mZvPCYg3MS4yCCozuZ2MTbtqWT3iZ8m",
+      "sol": 0.1011,
+      "timestamp": 1773709085,
+      "signature": "iRTLwX4a36aCU4MR45h3qqgyVZVod6pnv3oGQRXvdktiWzkEhpH9cYcmNnJrJT1ayLEsfD99TsD31uKigZLQoLx",
+      "time_str": "2026-03-17 00:58 UTC"
+    },
+    {
+      "wallet": "CwsaWqcQoJddSNviBQS7GL9zYXS6YJjgR3RkxAxnNeuu",
+      "sol": 0.1011,
+      "timestamp": 1773708499,
+      "signature": "4Y3q2VXu1zCt2cNwLehFpmwVh2fr7LV6NCjAKfQUR6XsWy6c94Hbz4WqMhJa5jErQGiyj2B7JMCcgpCpdX6rJWWG",
+      "time_str": "2026-03-17 00:48 UTC"
+    },
+    {
+      "wallet": "9FhrQZgyUiFmr3YYfQvjbfyxHXaPzZaZbRfeNzj7k5xP",
+      "sol": 0.1011,
+      "timestamp": 1773707908,
+      "signature": "61UtuqCMErycqd74TGuRehkRyEp1t1ZQTcA9REbMXbAJWcVeAq1FKKt55oqJDcKSEp7Nx7Vc35AsumE5ke3J6N1u",
+      "time_str": "2026-03-17 00:38 UTC"
+    },
+    {
+      "wallet": "75MXNgXqpMGNhFY6CazPQXBe7sGNcpTbwC141Uvr7xCG",
+      "sol": 0.1011,
+      "timestamp": 1773707318,
+      "signature": "TfeobAhUQoStsQtXbXyaHgJrwpfjqEE8X6bfE6QAQuXjctkDwTebn9grT96AqG2bhhSHqoHvfnjLs3Gjq3NZogj",
+      "time_str": "2026-03-17 00:28 UTC"
+    },
+    {
+      "wallet": "B9KDnRxjHgLj6SKYmNomyAomXcAH4j186peEBV2pQBJQ",
+      "sol": 0.1011,
+      "timestamp": 1773706723,
+      "signature": "icNfjrq7XbuWhpPmuXT8uzN9MVqeFsGcdxNL7WQU5npDZivHX6HvELu6jD8pXyNG8xC5icxWZgr99rPmXEtui6t",
+      "time_str": "2026-03-17 00:18 UTC"
+    },
+    {
+      "wallet": "5C7rQrCbtmwWUsoexesxEUuYJs12mMvNzBSd7uPgBRKt",
+      "sol": 0.1011,
+      "timestamp": 1773706130,
+      "signature": "5RLKAXFG88vyfkaXbUtr1QaWWTCXAcdXG3JKnZWBk63oRYKNhKzhE2oBuxtv2oURnb5FnbhqnqFBfSKawu9ivXkw",
+      "time_str": "2026-03-17 00:08 UTC"
+    },
+    {
+      "wallet": "4m7WdPYresTmtTkX8MGiFeHXdxqMBrcGZWSxApmDUxqg",
+      "sol": 0.1011,
+      "timestamp": 1773705535,
+      "signature": "5t5zJExwkDdyNKTiURzrfxgFMPDzQJCqFW9mTpxqQ8E9oWrMYc5LNoXS8tmbUpfXsNoaaVvwSBTNKf2eL9v9vkRf",
+      "time_str": "2026-03-16 23:58 UTC"
+    },
+    {
+      "wallet": "9cBbSeQqfn6F6eAGdg2KwDGxFDLo8gV7ZzyKYt21jG7h",
+      "sol": 0.1011,
+      "timestamp": 1773704950,
+      "signature": "53WiBd7FPUGSyPWRSgL7KBb2tcbfP7xkCceBg1x6X3WWBRvTT5Fajfn27HzCJh9j6hCe2dfmrA17VAk5MZ3JFQUu",
+      "time_str": "2026-03-16 23:49 UTC"
+    },
+    {
+      "wallet": "JDzA3CByHrkTHiCRKQTnFoEwZMHX7dUm3uWW4yJiatfN",
+      "sol": 0.1011,
+      "timestamp": 1773704352,
+      "signature": "4cdhfjZXxix8Hk7HdqQbk1s2hd5aNpjyL9bjkah1fXiTVVVQN4WxifyF2xSnwKwKVDUG3cr7X1gdubUsJb5AWF2z",
+      "time_str": "2026-03-16 23:39 UTC"
+    },
+    {
+      "wallet": "Ef4CFPpVrGHxX7U63hGG11C8S2oNjaZXg1NScTuxYkQ7",
+      "sol": 0.1011,
+      "timestamp": 1773703755,
+      "signature": "2ntdJnWBpFMAdTmW4stBgzomqaUnzibAkLpUjdJQfgXJXhF35hxq36yYh88J9PsN8t6wEnTgnquJxnETL52KmY7n",
+      "time_str": "2026-03-16 23:29 UTC"
+    },
+    {
+      "wallet": "FJjr6C3QBdkguXDxkdbYCiNH2RNWCrUXYB8NYWMLpEgp",
+      "sol": 0.1011,
+      "timestamp": 1773703158,
+      "signature": "nMUyu74xNG5CWvkeEfCXfpaGUtkp3dtKW8KpattcXnPHyiBcrgQhTGW98wpFAVtxnRTr8QW5EpRkNW4HtQ1zDQN",
+      "time_str": "2026-03-16 23:19 UTC"
+    },
+    {
+      "wallet": "2gTccgFRcJLGmXairH8qbHjYXXRNU4QGnouDak4JtdYY",
+      "sol": 0.1011,
+      "timestamp": 1773702569,
+      "signature": "5KYnuKf9WqotMA5HDnTn6KMBAQgDTLftvS58twy6YRgjohKrHuyN54wqUeJ8VdgvnitEQ2S3tTwpHtZmzEPLfExc",
+      "time_str": "2026-03-16 23:09 UTC"
+    },
+    {
+      "wallet": "6AbK1fsJMUsKXLRjHfJvWrobuokCqCr8J6e5g7NVFfk9",
+      "sol": 0.1011,
+      "timestamp": 1773701974,
+      "signature": "2vjBMGLUoLxPSqfVwffZiN3wBcUFMomv5jPjxW5WkodNNSkFR4aQyZtYvMU2fjrf9yHXpHkkmHyPJ3s21vayndoa",
+      "time_str": "2026-03-16 22:59 UTC"
+    },
+    {
+      "wallet": "F6zFbiuPQ6YHg4E8NRzEExJwLLyjbpQ2233Jj59qa6m",
+      "sol": 0.1011,
+      "timestamp": 1773701382,
+      "signature": "5RgcHUDTrZPyMVoFyMvQSgqTHvRbUdVHEknDSLtTsdkUZgz9FFV15qLUVpX7cnDzt6m5HLSNp8H3AKXqUGBNS91j",
+      "time_str": "2026-03-16 22:49 UTC"
+    },
+    {
+      "wallet": "AmXkbQYsw2BiM57XyBcqfwD7NdJsEfxRmmYtLMhk95dP",
+      "sol": 0.1011,
+      "timestamp": 1773700782,
+      "signature": "EfNYEq48b8oBhLPYY531rQucKvdAVHzMpi2d8s1L8RUGuWKwKc33duzhg3PUvRqB8Ya1SiCkgQ2CPcQPyhFawG7",
+      "time_str": "2026-03-16 22:39 UTC"
+    },
+    {
+      "wallet": "J8P41RtSjeKhZNL3ebnCDTNE2hurQ2MY4F7GzrFUEY6M",
+      "sol": 0.1011,
+      "timestamp": 1773700188,
+      "signature": "4RCErZcvcVFDkFhXsQPgJLM72nP2DttvD5Hf9SMmVSxE6sTzs2Cp8qaMAjgq6aZkNDVaPwHDKAUYKriX7NADJ8Sa",
+      "time_str": "2026-03-16 22:29 UTC"
+    },
+    {
+      "wallet": "CJ7cKzRMc8p5SrtbAG8fynRX67by3eCcgbwPKy9werhL",
+      "sol": 0.1011,
+      "timestamp": 1773699595,
+      "signature": "2tysTGAycqMEprN64T4ZVMVmkBNZh5jBhYLQH1neZzLNytk8xFvXW6U2Qid7dTGkFjo5Tnp8dEPPfAeczfhhwADS",
+      "time_str": "2026-03-16 22:19 UTC"
+    },
+    {
+      "wallet": "Hr6Qxyv9nzQLQxDCHNGTrHM768x4JEb1pU2zhBqVew91",
+      "sol": 0.1944,
+      "timestamp": 1773699254,
+      "signature": "5PoSyMuEX14vTAjLkUbkHst9jTPs25bkvAFL3Dw8SazWhbqT1tyTBxmhYqA9ximDAZi5DU74VxdgCjjTe2GeDbJ",
+      "time_str": "2026-03-16 22:14 UTC"
+    },
+    {
+      "wallet": "Hr6Qxyv9nzQLQxDCHNGTrHM768x4JEb1pU2zhBqVew91",
+      "sol": 0.1946,
+      "timestamp": 1773699245,
+      "signature": "27jsLAQ2mxLKgeMhENUe4KoWUZ6PPqf62SxmYMnXv2eZZZ8Rn21iFyyQXbZfWU3jifPQ7hJ7fJguA7eRGcok7GBE",
+      "time_str": "2026-03-16 22:14 UTC"
+    },
+    {
+      "wallet": "Hr6Qxyv9nzQLQxDCHNGTrHM768x4JEb1pU2zhBqVew91",
+      "sol": 0.1946,
+      "timestamp": 1773699231,
+      "signature": "42PqHpBgo1BAg4S4h1ZHSvhSrw5fRneXTUVeLuvsQcZQkLLjbiZoUEdekP4p6wr1KB8gtEJU9BdX494yhRaYa1dg",
+      "time_str": "2026-03-16 22:13 UTC"
+    },
+    {
+      "wallet": "Hr6Qxyv9nzQLQxDCHNGTrHM768x4JEb1pU2zhBqVew91",
+      "sol": 0.1946,
+      "timestamp": 1773699223,
+      "signature": "2LsXzTaQLwHnbDyoBNvkqaMyRN8NV44kQ5MhbBEE1Vrs6PePnzqrFDbnUjdNsnNhbhqJ3D62SpNa1PGu1bWEbG64",
+      "time_str": "2026-03-16 22:13 UTC"
+    },
+    {
+      "wallet": "Hr6Qxyv9nzQLQxDCHNGTrHM768x4JEb1pU2zhBqVew91",
+      "sol": 0.1946,
+      "timestamp": 1773699210,
+      "signature": "4K3UEExguushQeGwqQCUnaxNmJMPFdR1vtp2PwRtbuV8DLbBBYogZjX7SzNHY8treDD4UKRRDKht8D2qXbmz5WHk",
+      "time_str": "2026-03-16 22:13 UTC"
+    },
+    {
+      "wallet": "Hr6Qxyv9nzQLQxDCHNGTrHM768x4JEb1pU2zhBqVew91",
+      "sol": 0.1946,
+      "timestamp": 1773699195,
+      "signature": "42NbZT4Y5VzDdy7j7emPAKwuvFf7atCLa72Gz7VrEhriBvEX7oPrHszUwgX7i119mMF1fw3B9wiQ7oJcwKqdfoSz",
+      "time_str": "2026-03-16 22:13 UTC"
+    },
+    {
+      "wallet": "Hr6Qxyv9nzQLQxDCHNGTrHM768x4JEb1pU2zhBqVew91",
+      "sol": 0.1953,
+      "timestamp": 1773699187,
+      "signature": "2pYirakDuZEtftbJZraCFLgFBSF8LARQhhUmjSmKP3imzY4jBZVBpqVyv2bRLyMHjfbGmGsvEw92UVjbBbgGdwqf",
+      "time_str": "2026-03-16 22:13 UTC"
+    },
+    {
+      "wallet": "Hr6Qxyv9nzQLQxDCHNGTrHM768x4JEb1pU2zhBqVew91",
+      "sol": 0.1953,
+      "timestamp": 1773699171,
+      "signature": "5EA8B2WAoh4QDCUVTLZELnWcJQGcbGUqWqJH65ieY3jfU5jq9sbRrdGDXThXkyHaYsgDDLTuoB7Z7ZiUsDs9SBut",
+      "time_str": "2026-03-16 22:12 UTC"
+    },
+    {
+      "wallet": "Hr6Qxyv9nzQLQxDCHNGTrHM768x4JEb1pU2zhBqVew91",
+      "sol": 0.1884,
+      "timestamp": 1773699152,
+      "signature": "2gi5rCJeczu5ovpJUX6K9z6FgzwKDrDsXJsaQAL2nw8cofoVwYZjdijxXB79AKVGXHSDnQLDJNRS7zdBRdSxYWmS",
+      "time_str": "2026-03-16 22:12 UTC"
+    },
+    {
+      "wallet": "Hr6Qxyv9nzQLQxDCHNGTrHM768x4JEb1pU2zhBqVew91",
+      "sol": 0.1884,
+      "timestamp": 1773699144,
+      "signature": "4GaPEZBTy9zbHBw1WFWKDk4iHA9ujNjgEtFGxmtWf5KRgsRTtLFnDan8R2zFUeVzBvTdHtvAyicqYDNugvjWmC4e",
+      "time_str": "2026-03-16 22:12 UTC"
+    },
+    {
+      "wallet": "Hr6Qxyv9nzQLQxDCHNGTrHM768x4JEb1pU2zhBqVew91",
+      "sol": 0.1884,
+      "timestamp": 1773699136,
+      "signature": "nNTD8fqJAAB5JoM5pnd8JT44T5iy3Rc4w4kP9dtxcaznHgSZSjk8DrKRwuBYQrJDVLMGG1b144brSnwFA2GukvH",
+      "time_str": "2026-03-16 22:12 UTC"
+    },
+    {
+      "wallet": "Hr6Qxyv9nzQLQxDCHNGTrHM768x4JEb1pU2zhBqVew91",
+      "sol": 0.192,
+      "timestamp": 1773699121,
+      "signature": "4fJj7XwboBJUw27vsfqhvA1FbDbbt1jpbB5E17HU425qRbHdqSFN5SPpAeASKoCLefAzcZtfY3uVbsQJJNgcWYbR",
+      "time_str": "2026-03-16 22:12 UTC"
+    },
+    {
+      "wallet": "BJcrif6kngpX9MJL5cvpLhAcPuVmZRJRmGJXDCFWkSrc",
+      "sol": 0.1011,
+      "timestamp": 1773699018,
+      "signature": "14vkQMC6HLT5dofg69s9yJZY487yYQ4punXE6CVP2pwgd65SMpsXovkWLvLG4QQM3K5UqqGSuTV3B1AGtzQNAhT",
+      "time_str": "2026-03-16 22:10 UTC"
+    },
+    {
+      "wallet": "D2fvGJvgWQnMdhQndgGuDsy23vqvNZPa4vzYoGhTdkbm",
+      "sol": 0.1011,
+      "timestamp": 1773698413,
+      "signature": "437Zpk16XzBJVYmGfhkeZbj6PeWdEaii4Pc4YYjrWSjaoJaSK4UCMtnfjtbsd45YpyyGt4P9ri7eqeveQ5jYyHs4",
+      "time_str": "2026-03-16 22:00 UTC"
+    },
+    {
+      "wallet": "JArsG83yQj2Mq1rqrqaUX7VawUjNnwoyPSDy9fryHeDD",
+      "sol": 0.1011,
+      "timestamp": 1773697819,
+      "signature": "5zhkz7XV4C8EFYyoQdAgwtmK812QbSZB3KcAnXqMSuTBTtEL8LVhEnWHRV6MnYKQbkoMkBrp3JMcoTbXpPta423A",
+      "time_str": "2026-03-16 21:50 UTC"
+    },
+    {
+      "wallet": "4KEyzMM3Sj2o8xLmEQisRVYTrczV2z4KBWWAMrHStrB3",
+      "sol": 0.1011,
+      "timestamp": 1773697228,
+      "signature": "eX9eKMg2qjieko2gyjPihKidHUWWcLRFr72QdpvzdwXvEDz7zEw8whyBWoCWA6KsCqR98cku5Kb2H6Bw4Naa3tU",
+      "time_str": "2026-03-16 21:40 UTC"
+    },
+    {
+      "wallet": "59hiiUGXwrCMZiTexmWYsQX7Gc2dwgsPh5iAazZc77rz",
+      "sol": 0.1011,
+      "timestamp": 1773696633,
+      "signature": "64F5azZ9K2BL8j19C3PS4jbKEUBTEDSU5SqauH44LqNYNAYFdM1n2XhJVLd1XxGSitkqNTLP8eoocE3PuuUJgawV",
+      "time_str": "2026-03-16 21:30 UTC"
+    },
+    {
+      "wallet": "EMU4tPbVUVLZpGUN66jjZ9XdsGTVktpECGHDNh5RjRTH",
+      "sol": 0.1011,
+      "timestamp": 1773696043,
+      "signature": "5bo1YGrBTPtGQF3RXecEHTzJNgRYABgmmDHewNun5dfNd3LZxHJ62H5KJ9qSKMhTaxBhNTN8YiDYo8mtWUcjic5F",
+      "time_str": "2026-03-16 21:20 UTC"
+    },
+    {
+      "wallet": "53T5Ty4CBJaztTVVidM4fegPPBwKbaDWDQtk2xDCyeL6",
+      "sol": 0.1011,
+      "timestamp": 1773695454,
+      "signature": "wirbVLHdDSTj4tQuWBgzPGBn75mH6zPozigcfNFtybQaPKXCmLV5jvmfK5AE57abxUvPtuMBg3ffsEeEx4vPW1H",
+      "time_str": "2026-03-16 21:10 UTC"
+    },
+    {
+      "wallet": "6pGpcoz1MU4e5ZBqubLY3KwCukVpf4o4XPM4piCHC4Nz",
+      "sol": 0.1011,
+      "timestamp": 1773694851,
+      "signature": "4pbqdydqGCJmKmLzjQF8GVF32EMbmQLLC6xFYUtakMTPcidW57xBKzVpfHUw9ozaqjZqX17qsB3qDUMzmAntLVxL",
+      "time_str": "2026-03-16 21:00 UTC"
+    },
+    {
+      "wallet": "3Aa4J1jqR2nXV7QhxiYx2Y5YsBKiiiVKEsubjZJN9SZQ",
+      "sol": 0.1011,
+      "timestamp": 1773694255,
+      "signature": "3PziwYMifmcK2sY8uEAveKz5NMxWTb45vAq846pUzGwWPgQqDySFKGYEygYbHPkuEgHmMf96biQ4Zmd2sMspY29G",
+      "time_str": "2026-03-16 20:50 UTC"
+    },
+    {
+      "wallet": "DPCKx254a9Sb7M8Fb37cpG21jNbXXnwNGsSfif1WiK7M",
+      "sol": 0.1011,
+      "timestamp": 1773693666,
+      "signature": "31cxfEg6kkMtaiD6PxaAqDH2XVubED7v87jS7chevPZr28LJAwzP1zDWvXuipsLigAQoA4SvDSN3FBL6PQ1xcAch",
+      "time_str": "2026-03-16 20:41 UTC"
+    },
+    {
+      "wallet": "F8RudthjXTjsEDGmqVRH16TWTaoEf7y6F2YwAQBzES5T",
+      "sol": 0.1011,
+      "timestamp": 1773693078,
+      "signature": "5k1qadCTJWomt8mB2cENdNkT1q1akiF2ujjzRdDVSrNds5FRUU8WqzssHQZFDvCfSoszqVAgBqiaGk34SuhxAiNr",
+      "time_str": "2026-03-16 20:31 UTC"
+    },
+    {
+      "wallet": "35UvBkEjdhuaMKEnK1gAumwV3jVCXUmLDV2Q2UVRbcdG",
+      "sol": 0.1011,
+      "timestamp": 1773692491,
+      "signature": "h5DvK6pYrSSmMLTWosk5hUsAGikmnx923SFFzQvJ9JdAE4oMpbhRaQjggCS7gsRmn95mM26iX4gUTvHcfVkdnJ7",
+      "time_str": "2026-03-16 20:21 UTC"
+    },
+    {
+      "wallet": "EdvGJdm9LEPYPCV1Bsojb1MvoMpt5Ex5WvAMUQkbyFRY",
+      "sol": 0.1011,
+      "timestamp": 1773691896,
+      "signature": "476nxKiEbprf8nHiLzEVYgMizrB9j4UYuSKP7mbZYao9cSEm3J1u3dAJY7DpRHs6Q58mBKbAbn8UA9fUeaLmcPEX",
+      "time_str": "2026-03-16 20:11 UTC"
+    },
+    {
+      "wallet": "28VxHyMr3hJNGT51co3csMqYiqSruwXBo5ddh9oUeAZu",
+      "sol": 0.1011,
+      "timestamp": 1773691300,
+      "signature": "23maNijUsLjh6wYPGfAQ9vVQigNzSfajnCwo2mJtxsuDenfHMVCHPyqrbBCpq7pcc9HLVPXdTiG6BHjDuGgZPD4U",
+      "time_str": "2026-03-16 20:01 UTC"
+    },
+    {
+      "wallet": "CZZjLFF6yZtGVJZ38KKoour1xXxdMM3kuRJhcAAiaT29",
+      "sol": 0.1011,
+      "timestamp": 1773690712,
+      "signature": "cvyU9YQbYS2eDts2UGzCDDdvAHX7WhdBceArzVdekyoYvryfbQDxfRnyq5p1mGHu36bj4pJkFZPearrF3pQaPa2",
+      "time_str": "2026-03-16 19:51 UTC"
+    },
     {
       "wallet": "k2HSXXzKLoMqNHBoSnUQRxyCknWW3vpZeNGkxEZDKZN",
       "sol": 0.1011,
@@ -54567,6 +55197,14 @@
     },
     {
       "rank": 21,
+      "wallet": "7sFbr9rCWivEbq7viUrGncdHQfXeJAohknJpqud21hVz",
+      "total_sol": 3.9825,
+      "win_count": 39,
+      "last_win": "2026-03-17 05:46 UTC",
+      "first_win": "2026-02-13 12:48 UTC"
+    },
+    {
+      "rank": 22,
       "wallet": "4ndeoo3Dnapzags3EM7WyxGaxDDeTWVz1Z2t1S1BooR9",
       "total_sol": 3.866,
       "win_count": 32,
@@ -54574,7 +55212,7 @@
       "first_win": "2026-02-13 08:25 UTC"
     },
     {
-      "rank": 22,
+      "rank": 23,
       "wallet": "4hmiD8vn8NpXcehTgnSadbBNj4p7Wkwe8Bf112TjdVa2",
       "total_sol": 3.701,
       "win_count": 56,
@@ -54582,7 +55220,7 @@
       "first_win": "2026-02-08 02:24 UTC"
     },
     {
-      "rank": 23,
+      "rank": 24,
       "wallet": "EVSnUBDRL67y4UMHcxzNaRT7xPDn7YSTXWZRNEcyKQtF",
       "total_sol": 3.586,
       "win_count": 31,
@@ -54590,20 +55228,12 @@
       "first_win": "2026-02-02 15:43 UTC"
     },
     {
-      "rank": 24,
+      "rank": 25,
       "wallet": "H1GuEiiimuEZd4vpqo7fgCp19hJM7UTB8sX994EBTHZw",
       "total_sol": 3.5399,
       "win_count": 20,
       "last_win": "2026-03-15 17:43 UTC",
       "first_win": "2026-02-18 21:13 UTC"
-    },
-    {
-      "rank": 25,
-      "wallet": "7sFbr9rCWivEbq7viUrGncdHQfXeJAohknJpqud21hVz",
-      "total_sol": 3.4965,
-      "win_count": 36,
-      "last_win": "2026-03-16 04:47 UTC",
-      "first_win": "2026-02-13 12:48 UTC"
     },
     {
       "rank": 26,
@@ -54623,19 +55253,19 @@
     },
     {
       "rank": 28,
+      "wallet": "8YCuzLBpPD4nRnppjYvCn47uSGUqQVHehEgiiPRDVHqv",
+      "total_sol": 3.1573,
+      "win_count": 25,
+      "last_win": "2026-03-17 04:51 UTC",
+      "first_win": "2026-02-13 08:28 UTC"
+    },
+    {
+      "rank": 29,
       "wallet": "3rGQjUT2ejv8PGjf8GTLUiVGvJo5CPDu44KeZV8SLcf5",
       "total_sol": 3.0875,
       "win_count": 16,
       "last_win": "2026-03-15 23:38 UTC",
       "first_win": "2026-03-12 06:47 UTC"
-    },
-    {
-      "rank": 29,
-      "wallet": "8YCuzLBpPD4nRnppjYvCn47uSGUqQVHehEgiiPRDVHqv",
-      "total_sol": 2.9628,
-      "win_count": 24,
-      "last_win": "2026-03-13 09:31 UTC",
-      "first_win": "2026-02-13 08:28 UTC"
     },
     {
       "rank": 30,
@@ -54679,6 +55309,14 @@
     },
     {
       "rank": 35,
+      "wallet": "Hr6Qxyv9nzQLQxDCHNGTrHM768x4JEb1pU2zhBqVew91",
+      "total_sol": 2.3152,
+      "win_count": 12,
+      "last_win": "2026-03-16 22:14 UTC",
+      "first_win": "2026-03-16 22:12 UTC"
+    },
+    {
+      "rank": 36,
       "wallet": "DWE6dQjnjLno8xKtTzjUV9rjFowDYyYBNCac6Pw8yZki",
       "total_sol": 2.1061,
       "win_count": 12,
@@ -54686,7 +55324,7 @@
       "first_win": "2026-02-20 10:22 UTC"
     },
     {
-      "rank": 36,
+      "rank": 37,
       "wallet": "HN7pWnXeUMRW8Z54CayyQTRsGgTATN8WNYMkSc5uUUDe",
       "total_sol": 1.936,
       "win_count": 26,
@@ -54694,7 +55332,7 @@
       "first_win": "2026-02-11 09:37 UTC"
     },
     {
-      "rank": 37,
+      "rank": 38,
       "wallet": "29QEs4KPrhUbP7HTvvY4EPihLFyc47McSuCDMGxDpJyk",
       "total_sol": 1.8716,
       "win_count": 14,
@@ -54702,7 +55340,7 @@
       "first_win": "2026-03-04 11:22 UTC"
     },
     {
-      "rank": 38,
+      "rank": 39,
       "wallet": "C7A5ajkwU2dkJUWZeXLxybgA49K9cRVPntaNurfwsYU3",
       "total_sol": 1.721,
       "win_count": 10,
@@ -54710,7 +55348,7 @@
       "first_win": "2026-03-03 17:29 UTC"
     },
     {
-      "rank": 39,
+      "rank": 40,
       "wallet": "FuKWJE7MeCH7HaYmcma2Y6TCMA42iUVhymCpgRvtNF5",
       "total_sol": 1.7071,
       "win_count": 9,
@@ -54718,7 +55356,7 @@
       "first_win": "2026-02-22 11:25 UTC"
     },
     {
-      "rank": 40,
+      "rank": 41,
       "wallet": "FYDJZ7a1NVvPNEE22thGP6wUJRJifdrJ7dkRNuJgQvAM",
       "total_sol": 1.627,
       "win_count": 12,
@@ -54726,7 +55364,7 @@
       "first_win": "2026-02-22 17:11 UTC"
     },
     {
-      "rank": 41,
+      "rank": 42,
       "wallet": "EnnGCxcuEHMSJ61e8fXyF9CnpQxK5R4dgKuqH1x1k3tn",
       "total_sol": 1.6152,
       "win_count": 12,
@@ -54734,7 +55372,7 @@
       "first_win": "2026-02-20 13:26 UTC"
     },
     {
-      "rank": 42,
+      "rank": 43,
       "wallet": "BNzacc67wPuXw5kepT99xV9bRnpBS5wFyW6tjWgTNVtx",
       "total_sol": 1.551,
       "win_count": 15,
@@ -54742,7 +55380,7 @@
       "first_win": "2026-03-08 00:08 UTC"
     },
     {
-      "rank": 43,
+      "rank": 44,
       "wallet": "BEVQDBiqberuWvgkr8R8SXWBndv1Zc2YBZshdxYoDTLN",
       "total_sol": 1.4085,
       "win_count": 16,
@@ -54750,7 +55388,7 @@
       "first_win": "2026-02-10 10:27 UTC"
     },
     {
-      "rank": 44,
+      "rank": 45,
       "wallet": "DzLPLPsaeLqcKSCVAx51dWQX9KWbwwz2PFb9Y6UrKaJe",
       "total_sol": 1.3409,
       "win_count": 11,
@@ -54758,7 +55396,7 @@
       "first_win": "2026-02-19 03:35 UTC"
     },
     {
-      "rank": 45,
+      "rank": 46,
       "wallet": "FtgqFgNPt9LWJzHywLBq9BS7Mgn7XR8RgUb1oaiyxrLL",
       "total_sol": 1.1287,
       "win_count": 6,
@@ -54766,7 +55404,7 @@
       "first_win": "2026-02-22 20:34 UTC"
     },
     {
-      "rank": 46,
+      "rank": 47,
       "wallet": "81sUorhVbS4qp2UqAxUyA8djTRUzXbyNKP9xoUSpYpLo",
       "total_sol": 1.1237,
       "win_count": 16,
@@ -54774,7 +55412,7 @@
       "first_win": "2026-02-08 06:32 UTC"
     },
     {
-      "rank": 47,
+      "rank": 48,
       "wallet": "5S6tAM9aVXaa8LSw8jX2vBHLusjYNCkaZRyNVmYnnxbF",
       "total_sol": 1.0753,
       "win_count": 14,
@@ -54782,7 +55420,7 @@
       "first_win": "2026-02-06 13:30 UTC"
     },
     {
-      "rank": 48,
+      "rank": 49,
       "wallet": "FZVEfWYmBSzuNyr9vSbAKgH2qHckWJEEUq7dkWn9Ndwr",
       "total_sol": 1.064,
       "win_count": 13,
@@ -54790,7 +55428,7 @@
       "first_win": "2026-02-10 10:46 UTC"
     },
     {
-      "rank": 49,
+      "rank": 50,
       "wallet": "AhPjoGrVA3UH4Zi8u4FoUg8CFsNGFASTLF2hLLXhmiBa",
       "total_sol": 1.0308,
       "win_count": 6,
@@ -54798,7 +55436,7 @@
       "first_win": "2026-01-21 13:09 UTC"
     },
     {
-      "rank": 50,
+      "rank": 51,
       "wallet": "CQJuKf3DwsT7gdZvcfXXQHcebrcuhTmKmCdQGaKSXQAV",
       "total_sol": 1.0122,
       "win_count": 7,
@@ -54806,7 +55444,7 @@
       "first_win": "2026-02-22 07:57 UTC"
     },
     {
-      "rank": 51,
+      "rank": 52,
       "wallet": "BQ9ynBhLy3VSrvNxR4w4BAqouNqDNXzrvj5xPTz7jYzN",
       "total_sol": 1.0065,
       "win_count": 11,
@@ -54814,7 +55452,7 @@
       "first_win": "2026-02-13 19:17 UTC"
     },
     {
-      "rank": 52,
+      "rank": 53,
       "wallet": "tx1TjCUtqB2HDJU3M1S7uf4a8a4aXDCmcJvkoHMghiR",
       "total_sol": 0.972,
       "win_count": 5,
@@ -54822,7 +55460,7 @@
       "first_win": "2026-03-16 08:44 UTC"
     },
     {
-      "rank": 53,
+      "rank": 54,
       "wallet": "6fbGkn3JXCmN2n9Vvt4morYffPyijLe6XKh7imrjDv4Z",
       "total_sol": 0.9575,
       "win_count": 8,
@@ -54830,7 +55468,7 @@
       "first_win": "2026-02-19 16:18 UTC"
     },
     {
-      "rank": 54,
+      "rank": 55,
       "wallet": "2mHbPAwUvPBxkEq6oznkkzopLoc1hEPcFnUw4vY6VodL",
       "total_sol": 0.9038,
       "win_count": 13,
@@ -54838,7 +55476,7 @@
       "first_win": "2026-02-06 18:32 UTC"
     },
     {
-      "rank": 55,
+      "rank": 56,
       "wallet": "uen3EiFgQBrHrJ5tNXiDzetqzbwsR7v8Pd82bovdQDk",
       "total_sol": 0.8865,
       "win_count": 12,
@@ -54846,7 +55484,7 @@
       "first_win": "2026-02-10 06:22 UTC"
     },
     {
-      "rank": 56,
+      "rank": 57,
       "wallet": "FcKWcZXTxkpjRwddFyVMrTvNYjT6ZKoHuigz1p68ncaJ",
       "total_sol": 0.8214,
       "win_count": 11,
@@ -54854,7 +55492,7 @@
       "first_win": "2026-02-09 12:59 UTC"
     },
     {
-      "rank": 57,
+      "rank": 58,
       "wallet": "EvVvKbqGzoJF9Ts1zTbG7zDFLExCT22nYZPb5xb3xa8P",
       "total_sol": 0.7699,
       "win_count": 2,
@@ -54862,7 +55500,7 @@
       "first_win": "2026-01-26 10:44 UTC"
     },
     {
-      "rank": 58,
+      "rank": 59,
       "wallet": "6rURmdKsr4R2vWTYFbxCthEbejHBW6vNMJF2N343yt2t",
       "total_sol": 0.7571,
       "win_count": 11,
@@ -54870,7 +55508,7 @@
       "first_win": "2026-02-07 10:46 UTC"
     },
     {
-      "rank": 59,
+      "rank": 60,
       "wallet": "HptgnMgrdhrzpxoWGZpqLvC2HaYiVs8erP3jCnamg68S",
       "total_sol": 0.7304,
       "win_count": 1,
@@ -54878,7 +55516,7 @@
       "first_win": "2026-02-02 12:00 UTC"
     },
     {
-      "rank": 60,
+      "rank": 61,
       "wallet": "6dzQe1VUX5bF4288qx95Y6DgxuqxTuWYLRnBjoDTCsJv",
       "total_sol": 0.7245,
       "win_count": 1,
@@ -54886,7 +55524,7 @@
       "first_win": "2026-01-29 12:00 UTC"
     },
     {
-      "rank": 61,
+      "rank": 62,
       "wallet": "3dqZTksL6NKdYEGHS1SaSwEXPFAgdeHEyDz7c95siAMR",
       "total_sol": 0.708,
       "win_count": 1,
@@ -54894,7 +55532,7 @@
       "first_win": "2026-01-21 11:59 UTC"
     },
     {
-      "rank": 62,
+      "rank": 63,
       "wallet": "AwktEBpsrCkTTg4A76iZURN277yHjapE6MDm4tYoAVBd",
       "total_sol": 0.7079,
       "win_count": 1,
@@ -54902,7 +55540,7 @@
       "first_win": "2026-01-25 11:59 UTC"
     },
     {
-      "rank": 63,
+      "rank": 64,
       "wallet": "A1iNmcFSnVB874LR3T4kaqYKuas9wHbFgaJSGP5zbZNM",
       "total_sol": 0.7077,
       "win_count": 5,
@@ -54910,7 +55548,7 @@
       "first_win": "2026-02-20 01:10 UTC"
     },
     {
-      "rank": 64,
+      "rank": 65,
       "wallet": "HhoGJC5bJ4dWLUBrDaHckVFXjqLkRveezaqNykQBUSC2",
       "total_sol": 0.6669,
       "win_count": 7,
@@ -54918,7 +55556,7 @@
       "first_win": "2026-02-23 01:39 UTC"
     },
     {
-      "rank": 65,
+      "rank": 66,
       "wallet": "49485gxx1Vz84Q3uKGFkB1cqSXnYthqB2CGR7nNKJgxU",
       "total_sol": 0.6568,
       "win_count": 9,
@@ -54926,7 +55564,7 @@
       "first_win": "2026-02-09 10:03 UTC"
     },
     {
-      "rank": 66,
+      "rank": 67,
       "wallet": "9esi8Y6UJyjTqB7vxKRcdf1XEuunwfXgecWAHz2rcnwZ",
       "total_sol": 0.6521,
       "win_count": 10,
@@ -54934,7 +55572,7 @@
       "first_win": "2026-02-08 17:06 UTC"
     },
     {
-      "rank": 67,
+      "rank": 68,
       "wallet": "6iCodMMLTdv6GGpNMJqrHRXtWhHDVpxRD6oUTQ4XiHk3",
       "total_sol": 0.65,
       "win_count": 4,
@@ -54942,7 +55580,7 @@
       "first_win": "2026-03-07 11:44 UTC"
     },
     {
-      "rank": 68,
+      "rank": 69,
       "wallet": "3v1omLoS2mufWZ8HpMfJAdWxhiUriJQbsPe7QyStUDSq",
       "total_sol": 0.5759,
       "win_count": 5,
@@ -54950,7 +55588,7 @@
       "first_win": "2026-03-05 15:33 UTC"
     },
     {
-      "rank": 69,
+      "rank": 70,
       "wallet": "HYRjoXXH3b4xqajiB8N2FvPjF9TEJWQuYn3b7fgvzzMD",
       "total_sol": 0.5695,
       "win_count": 5,
@@ -54958,7 +55596,7 @@
       "first_win": "2026-02-28 17:09 UTC"
     },
     {
-      "rank": 70,
+      "rank": 71,
       "wallet": "AvwaoA2Da2ZJv4idqrZjoX6K5CHX2nuHcKxUxuTAc9p6",
       "total_sol": 0.5614,
       "win_count": 3,
@@ -54966,7 +55604,7 @@
       "first_win": "2026-03-02 10:51 UTC"
     },
     {
-      "rank": 71,
+      "rank": 72,
       "wallet": "DdSxMCPWGUs6s473GnWDnb5g3gSWJmeM6JVxAbV6b984",
       "total_sol": 0.5229,
       "win_count": 8,
@@ -54974,7 +55612,7 @@
       "first_win": "2026-02-06 18:16 UTC"
     },
     {
-      "rank": 72,
+      "rank": 73,
       "wallet": "B5u9bDErcxjSHhVyjYz2BMWL49eNdxSrKa97vbxP19T7",
       "total_sol": 0.5036,
       "win_count": 6,
@@ -54982,7 +55620,7 @@
       "first_win": "2026-02-11 08:22 UTC"
     },
     {
-      "rank": 73,
+      "rank": 74,
       "wallet": "6vFaUzxwNwyD8LXbuLLgBhiRDpMvoiyAewKGePvhyh9X",
       "total_sol": 0.49,
       "win_count": 4,
@@ -54990,7 +55628,7 @@
       "first_win": "2026-02-18 17:06 UTC"
     },
     {
-      "rank": 74,
+      "rank": 75,
       "wallet": "FXAad6ZbCsamt7xP3QwQcAhypRRVFtC2zKHPWGo1XeUg",
       "total_sol": 0.484,
       "win_count": 5,
@@ -54998,7 +55636,7 @@
       "first_win": "2026-02-25 12:30 UTC"
     },
     {
-      "rank": 75,
+      "rank": 76,
       "wallet": "GxdnRqWzPtqBUcskBCvXWHnLS5kENLWmUCChRoeN59D8",
       "total_sol": 0.4815,
       "win_count": 6,
@@ -55006,7 +55644,7 @@
       "first_win": "2026-02-07 20:38 UTC"
     },
     {
-      "rank": 76,
+      "rank": 77,
       "wallet": "9pPRiLR7ss4KHexMMpSY3nhDsxyY1MuwrKeRybXwvQGF",
       "total_sol": 0.4744,
       "win_count": 7,
@@ -55014,7 +55652,7 @@
       "first_win": "2026-02-13 20:32 UTC"
     },
     {
-      "rank": 77,
+      "rank": 78,
       "wallet": "6hH1bo6ymTwKMFJVUGuuAMjsEjD1ic7DQauj77mVLp6S",
       "total_sol": 0.4597,
       "win_count": 7,
@@ -55022,7 +55660,7 @@
       "first_win": "2026-02-18 08:46 UTC"
     },
     {
-      "rank": 78,
+      "rank": 79,
       "wallet": "12UgmU89NqzWGXPCnvA4jD8Ez91oQRX2NuWC5PRX1ZLe",
       "total_sol": 0.4582,
       "win_count": 7,
@@ -55030,7 +55668,7 @@
       "first_win": "2026-02-07 20:52 UTC"
     },
     {
-      "rank": 79,
+      "rank": 80,
       "wallet": "BURtKtLaJcMbTjzywbWGgT1nKJrsXvswzfihREuPhQqy",
       "total_sol": 0.4288,
       "win_count": 5,
@@ -55038,7 +55676,7 @@
       "first_win": "2026-02-12 05:54 UTC"
     },
     {
-      "rank": 80,
+      "rank": 81,
       "wallet": "D5L7dNzQRMqhFvQHYP6xd365orDVLnwikYb1CCuyXemR",
       "total_sol": 0.4278,
       "win_count": 6,
@@ -55046,7 +55684,7 @@
       "first_win": "2026-02-15 08:58 UTC"
     },
     {
-      "rank": 81,
+      "rank": 82,
       "wallet": "D3qD2kPQqCJKzLHwRpWoU3donFxeTGtB6JGte3T6bvUB",
       "total_sol": 0.4241,
       "win_count": 6,
@@ -55054,7 +55692,7 @@
       "first_win": "2026-02-06 21:09 UTC"
     },
     {
-      "rank": 82,
+      "rank": 83,
       "wallet": "2vFw5rYC1yPm5UANSdCokL8PpvCb48vUnhXUQSZCLVqn",
       "total_sol": 0.4189,
       "win_count": 5,
@@ -55062,7 +55700,7 @@
       "first_win": "2026-02-09 10:23 UTC"
     },
     {
-      "rank": 83,
+      "rank": 84,
       "wallet": "5SC56X38aTYhS7pD6iyJzvTKP99UTBxhrUAgeLCRiXop",
       "total_sol": 0.4152,
       "win_count": 3,
@@ -55070,7 +55708,7 @@
       "first_win": "2026-03-03 23:26 UTC"
     },
     {
-      "rank": 84,
+      "rank": 85,
       "wallet": "BNyhf7pUace74hhHDnLNRsKGCQ5Vk3msYAKorvpvya3v",
       "total_sol": 0.4062,
       "win_count": 6,
@@ -55078,7 +55716,7 @@
       "first_win": "2026-02-18 12:06 UTC"
     },
     {
-      "rank": 85,
+      "rank": 86,
       "wallet": "GYTuvVDKkcmzxBrgotMhAdRqNjVmKZoGYWQLSgj1VEUs",
       "total_sol": 0.3907,
       "win_count": 5,
@@ -55086,7 +55724,7 @@
       "first_win": "2026-02-08 11:34 UTC"
     },
     {
-      "rank": 86,
+      "rank": 87,
       "wallet": "2cDbdiKeE7eZMV1rqp4Zan7KASjWqQtYByAd4Fi8iNTy",
       "total_sol": 0.3855,
       "win_count": 4,
@@ -55094,7 +55732,7 @@
       "first_win": "2026-02-26 08:35 UTC"
     },
     {
-      "rank": 87,
+      "rank": 88,
       "wallet": "HQVuBEJftnNBPiCesNQzpuJ61PnecPxTuwWpHw3EkyBQ",
       "total_sol": 0.384,
       "win_count": 3,
@@ -55102,7 +55740,7 @@
       "first_win": "2026-03-01 14:25 UTC"
     },
     {
-      "rank": 88,
+      "rank": 89,
       "wallet": "CZwXirzJQtBrE62ZH8DSiNLHg2hH2neoqCXcdQxWV5Ta",
       "total_sol": 0.366,
       "win_count": 5,
@@ -55110,7 +55748,7 @@
       "first_win": "2026-02-07 15:32 UTC"
     },
     {
-      "rank": 89,
+      "rank": 90,
       "wallet": "CdyBJWDYv9tuKvmQd1MHqzdgg71bx9mND8P1ght3CVmy",
       "total_sol": 0.3525,
       "win_count": 1,
@@ -55118,7 +55756,7 @@
       "first_win": "2026-02-20 14:19 UTC"
     },
     {
-      "rank": 90,
+      "rank": 91,
       "wallet": "GDHZJcCurcCcBs5RnwmdQxiEPLpqTzEUeQHSLajeTrAy",
       "total_sol": 0.3516,
       "win_count": 4,
@@ -55126,7 +55764,7 @@
       "first_win": "2026-02-15 18:04 UTC"
     },
     {
-      "rank": 91,
+      "rank": 92,
       "wallet": "Hb5NttxTbKZofGEeUEWEFyMrriFFJcLbbQRkc5cbcmbL",
       "total_sol": 0.3306,
       "win_count": 3,
@@ -55134,7 +55772,7 @@
       "first_win": "2026-02-19 19:58 UTC"
     },
     {
-      "rank": 92,
+      "rank": 93,
       "wallet": "BRtwjreFUs1PbBnbWsDGELrPxXf4hoiAhyJn6S3F5gk8",
       "total_sol": 0.3299,
       "win_count": 5,
@@ -55142,7 +55780,7 @@
       "first_win": "2026-02-08 06:10 UTC"
     },
     {
-      "rank": 93,
+      "rank": 94,
       "wallet": "5A83vaFn6LXjybn9iL3oSsymPthTBjLPRFRoP6PMs5RJ",
       "total_sol": 0.3275,
       "win_count": 5,
@@ -55150,7 +55788,7 @@
       "first_win": "2026-02-07 16:21 UTC"
     },
     {
-      "rank": 94,
+      "rank": 95,
       "wallet": "CyhiVrQGNhZHzFJDoMH5bCpGX6YkiGBEojxAC7a3NwA8",
       "total_sol": 0.3231,
       "win_count": 4,
@@ -55158,7 +55796,7 @@
       "first_win": "2026-02-09 12:16 UTC"
     },
     {
-      "rank": 95,
+      "rank": 96,
       "wallet": "Drnphqs9ASJLnRYc5Tm6frZGhpwWmMJyjaSesMN3nXNE",
       "total_sol": 0.2928,
       "win_count": 3,
@@ -55166,7 +55804,7 @@
       "first_win": "2026-03-01 03:20 UTC"
     },
     {
-      "rank": 96,
+      "rank": 97,
       "wallet": "9KxLBLe81Sw8UipWGf9b75ZzvnRyzAegXK4UcJqEN1ii",
       "total_sol": 0.2925,
       "win_count": 2,
@@ -55174,7 +55812,7 @@
       "first_win": "2026-02-26 09:21 UTC"
     },
     {
-      "rank": 97,
+      "rank": 98,
       "wallet": "8pSDSYbLcjXwr5mVR4zyHKPh1aryJmaSNYD5dCjjjYFm",
       "total_sol": 0.2849,
       "win_count": 3,
@@ -55182,7 +55820,7 @@
       "first_win": "2026-02-24 04:04 UTC"
     },
     {
-      "rank": 98,
+      "rank": 99,
       "wallet": "C1TgNQvenUuCcrezkDkiQJJLyvgqycTS1i6E8SxkeCWH",
       "total_sol": 0.282,
       "win_count": 3,
@@ -55190,20 +55828,12 @@
       "first_win": "2026-02-22 13:19 UTC"
     },
     {
-      "rank": 99,
+      "rank": 100,
       "wallet": "BpPVP8dBphx5LPncK3Kb3RTHcHjYRWenxPjJ1MSTfmvx",
       "total_sol": 0.2656,
       "win_count": 4,
       "last_win": "2026-02-12 06:07 UTC",
       "first_win": "2026-02-10 08:39 UTC"
-    },
-    {
-      "rank": 100,
-      "wallet": "7D5CfYgkUzJTmdpegj6SeQBmRiV66Nr2z7VfyciELzcr",
-      "total_sol": 0.2649,
-      "win_count": 4,
-      "last_win": "2026-02-11 16:35 UTC",
-      "first_win": "2026-02-10 11:25 UTC"
     }
   ]
 }
